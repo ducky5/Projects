@@ -47,6 +47,52 @@ nav > a > span {
 nav > a > span:hover {
   background: rgba(0, 0, 0, .1);
 }
+.cards-container {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  margin: 15px 10px 0 10px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 10px;
+}
+.username {
+  text-align: center;
+  font-size: 20px;
+  order: 2;
+  font-family: main-font;
+  word-wrap: break-word;
+  padding: 8px;
+}
+.indicator {
+  background: linear-gradient(to bottom, rgb(0, 4, 56), rgba(0, 4, 56, .9));
+  order: 3;
+  padding: 5px;
+  color: rgb(240, 240, 240);
+  text-align: center;
+  font-family: main-font;
+  font-size: 25px;
+}
+.avatar {
+  order: 1;
+}
+
+/* for laptop up */
+/* .indicator {
+  padding: 5px;
+  background: linear-gradient(to bottom, rgb(0, 4, 56), rgba(0, 4, 56, .9));
+  width: 32%;
+  height: 30%;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  border-radius: 50%;
+} */
+
+
 /* from laptops and small screens up */
 @media (min-width: 769px) {
   header {
