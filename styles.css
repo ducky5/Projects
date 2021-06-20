@@ -6,6 +6,9 @@
   box-sizing: border-box;
   margin: 0;
 }
+body {
+  background: rgb(240, 240, 240);
+}
 header {
   display: flex;
   flex-direction: column;
@@ -51,13 +54,16 @@ nav > a > span:hover {
   font-family: sans-serif;
   display: flex;
   flex-direction: column;
-  margin: 15px 10px 0 10px;
+  margin-top: 15px;
 }
 .card {
   display: flex;
   flex-direction: column;
   position: relative;
   margin-bottom: 10px;
+  padding: 5px;
+  border: 5px solid rgb(0, 4, 56);
+
 }
 .username {
   text-align: center;
@@ -66,9 +72,10 @@ nav > a > span:hover {
   font-family: main-font;
   word-wrap: break-word;
   padding: 8px;
+  color: rgb(0, 4, 56);
 }
 .indicator {
-  background: linear-gradient(to bottom, rgb(0, 4, 56), rgba(0, 4, 56, .9));
+  background: rgb(0, 4, 56);
   order: 3;
   padding: 5px;
   color: rgb(240, 240, 240);
@@ -79,20 +86,6 @@ nav > a > span:hover {
 .avatar {
   order: 1;
 }
-
-/* for laptop up */
-/* .indicator {
-  padding: 5px;
-  background: linear-gradient(to bottom, rgb(0, 4, 56), rgba(0, 4, 56, .9));
-  width: 32%;
-  height: 30%;
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  border-radius: 50%;
-} */
-
-
 /* from laptops and small screens up */
 @media (min-width: 769px) {
   header {
@@ -111,5 +104,42 @@ nav > a > span:hover {
   }
   nav > a > span {
     padding: 10px 30px;
+  }
+  .cards-container {
+    /* flex-direction: row; */
+    /* flex-wrap: wrap; */
+    /* justify-content: center; */
+  }
+  .card {
+    width: 500px;
+    /* margin-right: 5px; */
+    align-self: center;
+  }
+  .card:hover {
+    cursor: pointer;
+  }
+  .username {
+    font-size: 25px;
+  }
+  .indicator {
+    display: none;
+  }
+  .indicator > span {
+    align-self: center;
+  }
+  .card:hover > .indicator {
+    position: absolute;
+    right: 0;
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+  }
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
   }
 }
