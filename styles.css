@@ -49,39 +49,56 @@ a, a:link, a:hover, a:visited, a:active {
   color: inherit;
   text-decoration: none;
 }
-nav > a > span {
-  -webkit-transition: background 100ms ease;
-  -o-transition: background 100ms ease;
-  -moz-transition: background 100ms ease;
-  -ms-transition: background 100ms ease;
-}
-nav > a > span:hover {
-  background: rgba(0, 0, 0, .1);
-}
 ul {
   padding: 0;
-  margin: 30px auto 0 auto;
+  margin: 90px auto 0 auto;
   width: 90%;
   display: flex;
   flex-wrap: wrap;
 }
+.list-item-wrapper {
+  flex-basis: 100%;
+  position: relative;
+  margin-bottom: 75px;
+}
+.action-buttons {
+  display: flex;
+  padding: 8px;
+  background: rgb(247, 247, 247);
+  position: absolute;
+  right: 0;
+  top: -52px;
+  border-radius: 25% 0 0 0;
+  border: 1px solid rgba(0, 0, 0, .09);
+  border-bottom: 0;
+}
+.action-buttons > button {
+  border: 0;
+  background: transparent;
+  font-size: 30px;
+}
+.action-buttons > #add {
+  color: rgb(39, 219, 26);
+  order: 2;
+}
+.action-buttons > #unadd {
+  color: rgb(232, 80, 53);
+  order: 1;
+}
 li {
-  margin: 3px;
   border: 1px solid rgba(0, 0, 0, .09);
   display: flex;
-  flex-basis: 100%;
   justify-content: space-between;
   font-family: sans-serif;
   background: rgb(247, 247, 247);
   padding: 3px;
-  font-size: 20px;
+  font-size: 25px;
 }
 .meta-data {
   order: 1;
-  align-self: flex-end;
   padding: 5px;
   color: rgb(97, 184, 255);
-  font-size: .6em;
+  font-size: .5em;
   align-self: center;
   font-family: roboto-bold;
 }
@@ -93,8 +110,6 @@ li {
 }
 .gender, .compatibility {
   font-size: 1.8em;
-}
-li > span {
 }
 /* from laptops and small screens up */
 @media (min-width: 769px) {
@@ -114,6 +129,15 @@ li > span {
   }
   nav > a > span {
     padding: 10px 30px;
+  }
+  nav > a > span {
+    -webkit-transition: background 100ms ease;
+    -o-transition: background 100ms ease;
+    -moz-transition: background 100ms ease;
+    -ms-transition: background 100ms ease;
+  }
+  nav > a > span:hover {
+    background: rgba(0, 0, 0, .1);
   }
   header {
     position: sticky;
