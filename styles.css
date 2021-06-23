@@ -8,7 +8,7 @@
 }
 @font-face {
   src: url('fonts/roboto_condensed/RobotoCondensed-Regular.ttf');
-  font-family: test;
+  font-family: roboto-regular;
 }
 * {
   box-sizing: border-box;
@@ -40,7 +40,6 @@ header > nav {
   font-size: 13px;
   font-weight: 900;
   font-family: sans-serif;
-  /* font-family: main-font; */
 }
 nav > a {
   flex-basis: 100%;
@@ -60,7 +59,6 @@ nav > a > span:hover {
   background: rgba(0, 0, 0, .1);
 }
 ul {
-  /* padding: 15px; */
   padding: 0;
   margin: 30px auto 0 auto;
   width: 90%;
@@ -73,18 +71,7 @@ li {
   display: flex;
   flex-basis: 100%;
   justify-content: space-between;
-  /* flex-direction: column; */
-  /* flex-basis: 50%; */
-  /* width: 49%; */
-  /* padding: 10px; */
-  /* background: linear-gradient(to top right, rgba(0, 4, 56, .9),
-  rgba(0, 4, 56, 1)); */
-  /* color: rgb(240, 240, 240); */
   font-family: sans-serif;
-  /* color: rgb(25, 25, 25); */
-  /* border: 1px solid rgb(25, 25, 25); */
-  /* padding: 5px; */
-  /* text-align: center; */
   background: rgb(247, 247, 247);
   padding: 3px;
   font-size: 20px;
@@ -93,18 +80,13 @@ li {
   order: 1;
   align-self: flex-end;
   padding: 5px;
-  /* font-size: 20px; */
-  /* align-self: flex-end; */
-  /* border-bottom: 1px solid rgb(25, 25, 25); */
-  /* background: linear-gradient(to bottom, rgb(0, 4, 56), rgba(0, 4, 56, .9)); */
   color: rgb(97, 184, 255);
   font-size: .6em;
   align-self: center;
   font-family: roboto-bold;
 }
 .username {
-  font-family: test;
-  /* order: 2; */
+  font-family: roboto-regular;
   align-self: center;
   padding: 3px;
   color: rgb(0, 4, 56);
