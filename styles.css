@@ -144,4 +144,20 @@ li {
     top: 0;
     z-index: 1;
   }
+  ul {
+    justify-content: space-around;
+  }
+  .list-item-wrapper {
+    flex-basis: 24%;
+  }
+  .action-buttons {
+    opacity: 0;
+    transition: opacity 500ms ease;
+  }
+  .list-item-wrapper:hover > .action-buttons {
+    opacity: 1;
+  }
+  .action-buttons > button {
+    cursor: pointer;
+  }
 }
