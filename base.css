@@ -37,9 +37,8 @@ header * {
 }
 header > nav {
   display: flex;
-  font-size: 13px;
+  font-size: 20px;
   font-weight: 900;
-  font-family: sans-serif;
 }
 nav > a {
   flex-basis: 100%;
@@ -66,12 +65,12 @@ header {
     align-items: center;
   }
   header > span {
-    font-size: 45px;
+    font-size: 50px;
     margin: 0;
   }
   header > nav {
     font-weight: 100;
-    font-size: 15px;
+    font-size: 35px;
   }
   nav > a > span {
     padding: 10px 30px;
