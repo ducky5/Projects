@@ -41,6 +41,7 @@ li {
   border: 1px solid rgba(0, 0, 0, .09);
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   font-family: sans-serif;
   background: rgb(247, 247, 247);
   padding: 3px;
@@ -50,7 +51,7 @@ li {
   order: 1;
   padding: 5px;
   color: rgb(97, 184, 255);
-  font-size: .5em;
+  font-size: .44em;
   align-self: center;
   font-family: roboto-bold;
   /* disables text selection */
@@ -66,6 +67,8 @@ li {
   align-self: center;
   padding: 3px;
   color: rgb(0, 4, 56);
+  font-size: .77em;
+
 }
 .gender, .compatibility {
   font-size: 1.8em;
@@ -73,7 +76,7 @@ li {
 /* from laptops and small screens up */
 @media (min-width: 769px) {
   ul {
-    justify-content: space-around;
+    justify-content: space-between;
   }
   .action-buttons {
     opacity: 0;
@@ -88,13 +91,25 @@ li {
 }
 /* 2cols:1row */
 @media (min-width: 769px) {
+  ul {
+    justify-content: space-around;
+  }
   .list-item-wrapper {
     flex-basis: 40%;
   }
+  .meta-data {
+    font-size: .46em;
+  }
 }
-/* 4cols:1row */
+/* 3cols:1row */
 @media (min-width: 1201px) {
   .list-item-wrapper {
-    flex-basis: 24%;
+    flex-basis: 33%;
+  }
+  .meta-data {
+    font-size: .49em;
+  }
+  .username {
+    font-size: 1em;
   }
 }

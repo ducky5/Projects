@@ -37,17 +37,16 @@
   border: 0;
   margin: auto;
   display: block;
-  font-size: 20px;
-  background: rgb(39, 219, 26);
+  font-size: 30px;
+  background: rgba(0, 0, 0, .1);
   padding: 8px;
-  border-radius: 5px;
-  color: rgb(240, 240, 240);
-  font-family: brand-font;
+  color: rgb(0, 4, 56);
+  font-family: roboto-bold;
   position: absolute;
   bottom: 0;
   right: 0;
   left: 0;
-  width: 72%;
+  width: 100%;
 }
 @media (min-width: 769px) {
   .card {
@@ -65,6 +64,10 @@
   }
   #learn {
     cursor: pointer;
+    transition: background 100ms ease;
+  }
+  #learn:hover {
+    background: rgba(0, 0, 0, .3);
   }
   .question {
     font-size: 30px;
