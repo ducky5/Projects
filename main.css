@@ -75,7 +75,6 @@ li {
 }
 .filter-by {
   width: 90%;
-  /* border-bottom: 1px solid rgba(0, 0, 0, .09); */
   padding: 10px;
   background: rgb(247, 247, 247);
   margin: 20px auto 0 auto;
