@@ -3,7 +3,7 @@
 /* body */
 ul {
   padding: 0;
-  margin: 90px auto 0 auto;
+  margin: 80px auto 0 auto;
   width: 90%;
   display: flex;
   flex-wrap: wrap;
@@ -70,23 +70,44 @@ li {
   font-size: .77em;
 
 }
-.gender, .compatibility {
+.gender, .compatibility, .age {
   font-size: 1.8em;
+}
+.filter-by {
+  width: 90%;
+  /* border-bottom: 1px solid rgba(0, 0, 0, .09); */
+  padding: 10px;
+  background: rgb(247, 247, 247);
+  margin: 20px auto 0 auto;
+  font-family: roboto-regular;
+  font-size: 20px;
+  color: rgb(0, 4, 56);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, .09);
 }
 /* from laptops and small screens up */
 @media (min-width: 769px) {
   ul {
     justify-content: space-between;
   }
+  li {
+    transition: box-shadow 250ms ease;
+  }
+  .list-item-wrapper:hover > li {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .09);
+  }
   .action-buttons {
     opacity: 0;
-    transition: opacity 500ms ease;
+    transition: opacity 250ms ease;
   }
   .list-item-wrapper:hover > .action-buttons {
     opacity: 1;
   }
   .action-buttons > button {
     cursor: pointer;
+  }
+  .filter-by {
+    font-size: 40px;
+    padding: 15px;
   }
 }
 /* 2cols:1row */
