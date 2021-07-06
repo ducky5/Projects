@@ -2,11 +2,17 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <!-- responsiveness meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="learn.css">
+    <!-- base.css file(for this file which is the parent) -->
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/uniform/base.css') }}">
     <!-- icons -->
-    <link rel="stylesheet" href="icons/css/all.css">
-    <title>learn</title>
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='icons/css/all.css') }}">
+    <!-- child template's css files -->
+    {% block css_files %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
     <!-- header -->
@@ -20,10 +26,10 @@
       <!-- navigation -->
       <nav>
         <a href="/"><span class="home"><i class="fas fa-home"></i></span></a>
-        <a href="/profile.html"><span class="profile">
+        <a href="/profile"><span class="profile">
           <i class="fas fa-user-circle"></i>
         </span></a>
-        <a href="/learn.html"><span class="learn">
+        <a href="/learn"><span class="learn">
           <i class="fas fa-user-cog"></i>
         </span></a>
         <a href="#"><span class="logout">
@@ -33,16 +39,8 @@
     </header>
     <!-- main -->
     <main>
-      <div class="card">
-        <span class="question">You are an introvert.</span>
-        <button type="button" name="button" id="learn">correct</button>
-        <span class="next" title="next">
-          <i class="fas fa-arrow-alt-circle-right"></i>
-        </span>
-        <span class="previous" title="previous">
-          <i class="fas fa-arrow-alt-circle-left"></i>
-        </span>
-      </div>
+      <!-- child template's content -->
+      {% block content %}{% endblock %}
     </main>
     <!-- footer -->
     <footer></footer>

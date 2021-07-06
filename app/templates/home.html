@@ -1,0 +1,56 @@
+{% extends 'uniform/base.html' %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!-- filter by area -->
+<div class="filter-by">
+  <span class="buttons">
+    <button type="button" name="added-only">
+      <span>Added only</span>
+      <i class="fas fa-check-circle"></i>
+    </button>
+    <button type="button" name="my-age">
+      <span>My age</span>
+      <i class="fas fa-check-circle"></i>
+    </button>
+    <button type="button" name="older-than-me">
+      <span>Older than me</span>
+      <i class="fas fa-check-circle"></i>
+    </button>
+    <button type="button" name="female">
+      <i class="fas fa-female"></i>
+      <i class="fas fa-check-circle"></i>
+    </button>
+    <button type="button" name="male">
+      <i class="fas fa-male"></i>
+      <i class="fas fa-check-circle"></i>
+    </button>
+  </span>
+</div>
+<!-- lister -->
+<ul>
+  <div class="list-item-wrapper">
+    <span class="action-buttons">
+      <button type="button" name="button" id="add">
+        <i class="fas fa-plus-circle"></i>
+      </button>
+      <button type="button" name="button" id="unadd">
+        <i class="fas fa-minus-circle"></i>
+      </button>
+    </span>
+    <li>
+      <span class="username">the_oneintheio</span>
+      <span class="meta-data">
+        <span class="gender">[<i class="fas fa-female"></i>]</span>
+        <span class="compatibility">[72.11%]</span>
+        <span class="age">[24]</span>
+      </span>
+    </li>
+  </div>
+</ul>
+{% endblock %}

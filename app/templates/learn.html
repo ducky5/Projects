@@ -1,0 +1,20 @@
+{% extends 'uniform/base.html' %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/learn.css') }}">
+{% endblock %}
+
+{% block title %}Learn{% endblock %}
+
+{% block content %}
+<div class="card">
+  <span class="question">You are an introvert.</span>
+  <button type="button" name="button" id="learn">correct</button>
+  <span class="next" title="next">
+    <i class="fas fa-arrow-alt-circle-right"></i>
+  </span>
+  <span class="previous" title="previous">
+    <i class="fas fa-arrow-alt-circle-left"></i>
+  </span>
+</div>
+{% endblock %}
