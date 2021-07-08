@@ -7,7 +7,7 @@
 {% block title %}Learn{% endblock %}
 
 {% block content %}
-<div class="card">
+<div class="card hide" id="learn-card-1">
   <span class="question">You are an introvert.</span>
   <button type="button" name="button" id="learn">correct</button>
   <span class="next" title="next">
@@ -17,4 +17,31 @@
     <i class="fas fa-arrow-alt-circle-left"></i>
   </span>
 </div>
+
+<div class="card hide" id="learn-card-2">
+  <span class="question">You are an extrovert.</span>
+  <button type="button" name="button" id="learn">correct</button>
+  <span class="next" title="next">
+    <i class="fas fa-arrow-alt-circle-right"></i>
+  </span>
+  <span class="previous" title="previous">
+    <i class="fas fa-arrow-alt-circle-left"></i>
+  </span>
+</div>
+
+<div class="card hide" id="learn-card-3">
+  <span class="question">You are an epic.</span>
+  <button type="button" name="button" id="learn">correct</button>
+  <span class="next" title="next">
+    <i class="fas fa-arrow-alt-circle-right"></i>
+  </span>
+  <span class="previous" title="previous">
+    <i class="fas fa-arrow-alt-circle-left"></i>
+  </span>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/learn.js') }}"></script>
 {% endblock %}

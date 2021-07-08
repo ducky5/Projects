@@ -48,6 +48,10 @@
   left: 0;
   width: 100%;
 }
+/* class for hiding other learning cards */
+.hide {
+  display: none;
+}
 @media (min-width: 769px) {
   .card {
     height: 500px;

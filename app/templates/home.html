@@ -12,23 +12,23 @@
   <span class="buttons">
     <button type="button" name="added-only">
       <span>Added only</span>
-      <i class="fas fa-check-circle"></i>
+      <i class="fas fa-check-circle" id="added-only"></i>
     </button>
     <button type="button" name="my-age">
       <span>My age</span>
-      <i class="fas fa-check-circle"></i>
+      <i class="fas fa-check-circle" id="my-age"></i>
     </button>
     <button type="button" name="older-than-me">
       <span>Older than me</span>
-      <i class="fas fa-check-circle"></i>
+      <i class="fas fa-check-circle" id="older-than-me"></i>
     </button>
     <button type="button" name="female">
       <i class="fas fa-female"></i>
-      <i class="fas fa-check-circle"></i>
+      <i class="fas fa-check-circle" id="female"></i>
     </button>
     <button type="button" name="male">
       <i class="fas fa-male"></i>
-      <i class="fas fa-check-circle"></i>
+      <i class="fas fa-check-circle" id="male"></i>
     </button>
   </span>
 </div>
@@ -53,4 +53,8 @@
     </li>
   </div>
 </ul>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
 {% endblock %}

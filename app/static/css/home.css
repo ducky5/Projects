@@ -99,6 +99,9 @@ li {
 .buttons > button > i {
   padding-left: 3px;
 }
+.buttons > button > .fa-check-circle {
+  color: rgb(36, 36, 36);
+}
 button[name$="male"] {
   font-size: 1.3em;
 }
