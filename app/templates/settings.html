@@ -1,0 +1,41 @@
+{% extends 'uniform/base.html' %}
+
+{% block css_files %}
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/settings.css') }}">
+{% endblock %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<span class="tabs">
+  <div class="tab">
+    <span>account keys</span>
+    <i class="fas fa-caret-square-down"></i>
+  </div>
+  <div class="tab expand_unexpand" id="pmt-questions">
+    <span>PMT questions</span>
+    <i class="fas fa-caret-square-down"></i>
+  </div>
+</span>
+<!-- cards -->
+<div id="cards-wrapper" class="hide">
+  {% for question in questions %}
+  <div class="card hide" id="{{ question.id }}">
+    <span class="question">{{ question.content }}</span>
+    <button type="button" name="{{ question.btn_status }}" class="learn-btn">
+    correct</button>
+    <span class="next" title="next">
+      <i class="fas fa-arrow-alt-circle-right"></i>
+    </span>
+    <span class="previous" title="previous">
+      <i class="fas fa-arrow-alt-circle-left"></i>
+    </span>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+{% endblock %}

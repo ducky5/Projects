@@ -25,5 +25,22 @@ document.onreadystatechange = function() {
     catch (error) {
       console.log(error)
     }
+    // collapse "PMT questions"
+    document.getElementById('pmt-questions').onclick = function() {
+      if (document.getElementById('cards-wrapper').classList.contains('hide')){
+        document.getElementById('cards-wrapper').classList.remove('hide')
+        document.getElementById('pmt-questions').querySelector('i').classList
+        .remove('fa-caret-square-down')
+        document.getElementById('pmt-questions').querySelector('i').classList
+        .add('fa-caret-square-up')
+      }
+      else {
+        document.getElementById('cards-wrapper').classList.add('hide')
+        document.getElementById('pmt-questions').querySelector('i').classList
+        .remove('fa-caret-square-up')
+        document.getElementById('pmt-questions').querySelector('i').classList
+        .add('fa-caret-square-down')
+      }
+    }
   }
 }

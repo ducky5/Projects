@@ -1,9 +1,34 @@
+.tabs {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  /* disables text selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.tab {
+  padding: 8px;
+  font-family: roboto-regular;
+  font-size: 25px;
+  color: rgb(0, 4, 56);
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0, 0, 0, .09);
+  border-bottom: 1px solid rgba(0, 0, 0, .09);
+
+}
+/* card specific */
 .card {
   border: 1px solid rgba(0, 0, 0, .09);
   width: 100%;
-  height: 300px;
+  height: 250px;
   background: rgb(247, 247, 247);
-  margin: 25px auto 0 auto;
+  margin: 5px auto 0 auto;
   position: relative;
 }
 .card > span:not(.question) {
@@ -55,8 +80,10 @@
 @media (min-width: 769px) {
   .card {
     height: 500px;
-    width: 50%;
-    margin-top: 20px;
+    width: 74%;
+    position: absolute;
+    top: 80px;
+    right: 0;
   }
   .card > span:not(.question) {
     font-size: 50px;
@@ -76,5 +103,23 @@
   }
   .question {
     font-size: 30px;
+  }
+  .tabs {
+    width: 25%;
+    margin-left: 5px;
+    border-right: 1px solid rgba(0, 0, 0, .09);
+    padding-right: 15px;
+  }
+  .tab {
+    border: 1px solid rgba(0, 0, 0, .09);
+    transition: box-shadow 100ms ease;
+    cursor: pointer;
+    font-size: 22px;
+  }
+  .tab:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .09);
+  }
+  .tab > i {
+    display: none;
   }
 }
