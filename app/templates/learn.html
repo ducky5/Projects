@@ -7,9 +7,10 @@
 {% block title %}Learn{% endblock %}
 
 {% block content %}
-<div class="card hide" id="learn-card-1">
-  <span class="question">You are an introvert.</span>
-  <button type="button" name="button" id="learn">correct</button>
+{% for question in questions %}
+<div class="card hide" id="{{ question.id }}">
+  <span class="question">{{ question.content }}</span>
+  <button type="button" name="{{ question.btn_status }}" class="learn-btn">correct</button>
   <span class="next" title="next">
     <i class="fas fa-arrow-alt-circle-right"></i>
   </span>
@@ -17,28 +18,7 @@
     <i class="fas fa-arrow-alt-circle-left"></i>
   </span>
 </div>
-
-<div class="card hide" id="learn-card-2">
-  <span class="question">You are an extrovert.</span>
-  <button type="button" name="button" id="learn">correct</button>
-  <span class="next" title="next">
-    <i class="fas fa-arrow-alt-circle-right"></i>
-  </span>
-  <span class="previous" title="previous">
-    <i class="fas fa-arrow-alt-circle-left"></i>
-  </span>
-</div>
-
-<div class="card hide" id="learn-card-3">
-  <span class="question">You are an epic.</span>
-  <button type="button" name="button" id="learn">correct</button>
-  <span class="next" title="next">
-    <i class="fas fa-arrow-alt-circle-right"></i>
-  </span>
-  <span class="previous" title="previous">
-    <i class="fas fa-arrow-alt-circle-left"></i>
-  </span>
-</div>
+{% endfor %}
 
 {% endblock %}
 

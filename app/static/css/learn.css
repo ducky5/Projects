@@ -1,9 +1,9 @@
 .card {
   border: 1px solid rgba(0, 0, 0, .09);
   width: 100%;
-  height: 200px;
+  height: 300px;
   background: rgb(247, 247, 247);
-  margin: 20px auto 0 auto;
+  margin: 25px auto 0 auto;
   position: relative;
 }
 .card > span:not(.question) {
@@ -33,7 +33,7 @@
   margin: 10px auto 0 auto;
   word-wrap: break-word;
 }
-#learn {
+.learn-btn {
   border: 0;
   margin: auto;
   display: block;
@@ -56,6 +56,7 @@
   .card {
     height: 500px;
     width: 50%;
+    margin-top: 20px;
   }
   .card > span:not(.question) {
     font-size: 50px;
@@ -66,11 +67,11 @@
   .card > span:not(.question):hover {
     opacity: 1;
   }
-  #learn {
+  .learn-btn {
     cursor: pointer;
     transition: background 100ms ease;
   }
-  #learn:hover {
+  .learn-btn:hover {
     background: rgba(0, 0, 0, .3);
   }
   .question {

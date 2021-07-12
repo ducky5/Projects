@@ -2,66 +2,28 @@ document.onreadystatechange = function() {
   if (document.readyState === 'complete') {
     // unhide first card
     document.getElementById('learn-card-1').classList.remove('hide')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // let current_card = 1
-    // let next_buttons = document.querySelectorAll('span.next')
-    // let i = 0
-    // // next card
-    // for (let length = next_buttons.length; i < length-1; i++) {
-    //   next_buttons[i].onclick = function() {
-    //     current_card++
-    //     cards_list =
-    //     document.querySelectorAll('[id^="learn-card-"]:not(#learn-card-' + current_card + ')')
-    //     for (let i = 0, list_length = cards_list.length; i < list_length; i++) {
-    //       cards_list[i].classList.add('hide')
-    //     }
-    //     // unhide current card
-    //     document.getElementById('learn-card-' + current_card).classList.remove('hide')
-    //   }
-    // }
-    // // previous card
-    // for (let length = next_buttons.length; i < length-1; i++) {
-    //   next_buttons[i].onclick = function() {
-    //     current_card--
-    //     cards_list =
-    //     document.querySelectorAll('[id^="learn-card-"]:not(#learn-card-' + current_card + ')')
-    //     for (let i = 0, list_length = cards_list.length; i < list_length; i++) {
-    //       cards_list[i].classList.add('hide')
-    //     }
-    //     // unhide current card
-    //     document.getElementById('learn-card-' + current_card).classList.remove('hide')
-    //   }
-    // }
+    cards = document.querySelectorAll('[id^="learn-card-"]')
+    // to catch an error which doesn't disrupt anything
+    try {
+      for (let i = 0; ; i++) {
+        // show next card
+        if (cards[i+1]) {
+          cards[i].querySelector('[title="next"]').onclick = function() {
+            cards[i].classList.add('hide')
+            cards[i+1].classList.remove('hide')
+          }
+        }
+        // show previous card
+        if (cards[i-1]) {
+          cards[i].querySelector('[title="previous"]').onclick = function() {
+            cards[i].classList.add('hide')
+            cards[i-1].classList.remove('hide')
+          }
+        }
+      }
+    }
+    catch (error) {
+      console.log(error)
+    }
   }
 }
