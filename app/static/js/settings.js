@@ -3,6 +3,12 @@ document.onreadystatechange = function() {
     // unhide first card
     document.getElementById('learn-card-1').classList.remove('hide')
     cards = document.querySelectorAll('[id^="learn-card-"]')
+    // unhide cards-wrapper in the beginning for certain media query
+    media_query = '(min-width: 769px)'
+    matched = window.matchMedia(media_query).matches
+    if (matched) {
+      document.getElementById('cards-wrapper').classList.remove('hide')
+    }
     // to catch an error which doesn't disrupt anything
     try {
       for (let i = 0; ; i++) {

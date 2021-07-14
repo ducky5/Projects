@@ -1,26 +1,32 @@
 from app import app
 from flask import render_template
+from app.models import Assumption
 
 # temporary
-class Questions:
-    def __init__(self, content, id, btn_status):
-        self.content = content
-        self.id = id
-        self.btn_status = btn_status
+class User:
+    def __init__(self, username, gender, comp, age):
+        self.username = username
+        self.gender = gender
+        self.comp = comp
+        self.age = age
 
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    users = [
+        User('Yassir', 'male', 72, 18),
+        User('Kayle', 'female', 5, 19),
+        User('Alessa', 'female', 71, 28),
+        User('Jeff', 'male', 12, 71),
+        User('faysal', 'male', 99.2, 22),
+        User('Ellie', 'female', 82, 22)
+
+    ]
+    return render_template('home.html', users=users)
 
 @app.route('/settings')
 def profile():
-    questions = [
-        Questions("You like music", "learn-card-1", "correct"),
-        Questions("You like epicness", "learn-card-2", "correct"),
-        Questions("You like epicnessw", "learn-card-3", "correct"),
-        Questions("You Love", "learn-card-4", "correct")
-    ]
-    return render_template('settings.html', questions=questions)
+    assumptions = Assumption.query.all()
+    return render_template('settings.html', assumptions=assumptions)
 
 # implement logout

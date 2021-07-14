@@ -111,6 +111,9 @@ button[name$="male"], button[name="older-than-me"] {
 .buttons > button > i.fa-check-circle {
   font-size: 25px;
 }
+.hide {
+  display: none;
+}
 /* from laptops and small screens up */
 @media (min-width: 769px) {
   ul {
