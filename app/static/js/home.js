@@ -31,6 +31,7 @@ document.onreadystatechange = function() {
 
     // the actual filter-by functionality
     listings = document.querySelectorAll('.list-item-wrapper')
+    buttons = document.querySelectorAll('.buttons > [type="button"]')
 
     // my-age button
     document.querySelector('button[name="my-age"]')
@@ -47,6 +48,13 @@ document.onreadystatechange = function() {
         for (let i = 0, length = listings.length; i < length; i++) {
           listings[i].classList.remove('hide')
         }
+        // uncheck all other filter-buttons except male/female
+        for (let i = 0, length = buttons.length-2; i < length; i++) {
+          buttons[i].querySelector('i').style.opacity = 0
+        }
+        // uncheck male/female buttons
+        document.getElementById('male').style.opacity = 0
+        document.getElementById('female').style.opacity = 0
       }
     })
 
@@ -65,6 +73,13 @@ document.onreadystatechange = function() {
         for (let i = 0, length = listings.length; i < length; i++) {
           listings[i].classList.remove('hide')
         }
+        // uncheck all other filter-buttons except male/female
+        for (let i = 0, length = buttons.length-2; i < length; i++) {
+          buttons[i].querySelector('i').style.opacity = 0
+        }
+        // uncheck male/female buttons
+        document.getElementById('male').style.opacity = 0
+        document.getElementById('female').style.opacity = 0
       }
     })
 
@@ -83,6 +98,13 @@ document.onreadystatechange = function() {
         for (let i = 0, length = listings.length; i < length; i++) {
           listings[i].classList.remove('hide')
         }
+        // uncheck all other filter-buttons except male/female
+        for (let i = 0, length = buttons.length-2; i < length; i++) {
+          buttons[i].querySelector('i').style.opacity = 0
+        }
+        // uncheck male/female buttons
+        document.getElementById('male').style.opacity = 0
+        document.getElementById('female').style.opacity = 0
       }
     })
 
@@ -101,6 +123,13 @@ document.onreadystatechange = function() {
         for (let i = 0, length = listings.length; i < length; i++) {
           listings[i].classList.remove('hide')
         }
+        // uncheck all other filter-buttons except male/female
+        for (let i = 0, length = buttons.length-2; i < length; i++) {
+          buttons[i].querySelector('i').style.opacity = 0
+        }
+        // uncheck male/female buttons
+        document.getElementById('male').style.opacity = 0
+        document.getElementById('female').style.opacity = 0
       }
     })
   }

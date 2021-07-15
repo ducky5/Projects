@@ -26,11 +26,11 @@ ul {
   background: transparent;
   font-size: 30px;
 }
-.action-buttons > #add {
+.action-buttons > .add {
   color: rgb(39, 219, 26);
   order: 2;
 }
-.action-buttons > #unadd {
+.action-buttons > .unadd {
   color: rgb(232, 80, 53);
   order: 1;
 }

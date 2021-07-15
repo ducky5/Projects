@@ -22,11 +22,11 @@
       <span>Older than me</span>
       <i class="fas fa-check-circle" id="older-than-me"></i>
     </button>
-    <button type="button" name="female">
+    <button type="button" name="female" id="female-button">
       <i class="fas fa-female"></i>
       <i class="fas fa-check-circle" id="female"></i>
     </button>
-    <button type="button" name="male">
+    <button type="button" name="male" id="male-button">
       <i class="fas fa-male"></i>
       <i class="fas fa-check-circle" id="male"></i>
     </button>
@@ -37,10 +37,10 @@
   {% for user in users %}
   <div class="list-item-wrapper">
     <span class="action-buttons">
-      <button type="button" name="button" id="add">
+      <button type="button" name="button" class="add">
         <i class="fas fa-plus-circle"></i>
       </button>
-      <button type="button" name="button" id="unadd">
+      <button type="button" name="button" class="unadd">
         <i class="fas fa-minus-circle"></i>
       </button>
     </span>
