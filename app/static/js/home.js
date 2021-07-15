@@ -5,7 +5,7 @@ document.onreadystatechange = function() {
     for (let i = 0, length = btns.length; i < length; i++) {
       btns[i].querySelector('.fa-check-circle').style.opacity = 0
     }
-    // for (let i = 0, length = doument)
+
     // function to check/uncheck filter-by buttons
     function filter_by_check_uncheck(...nameAttributes) {
       let checkMark
@@ -69,5 +69,39 @@ document.onreadystatechange = function() {
     })
 
     // female button
+    document.querySelector('button[name="female"]')
+    .addEventListener('click', function() {
+      if (this.querySelector('[id="female"]').style.opacity == 1) {
+        for (let i = 0, length = listings.length; i < length; i++) {
+          if (!listings[i].querySelector('[name="gender"]').classList
+          .contains('fa-female')) {
+            listings[i].classList.add('hide')
+          }
+        }
+      }
+      else {
+        for (let i = 0, length = listings.length; i < length; i++) {
+          listings[i].classList.remove('hide')
+        }
+      }
+    })
+
+    // male button
+    document.querySelector('button[name="male"]')
+    .addEventListener('click', function() {
+      if (this.querySelector('[id="male"]').style.opacity == 1) {
+        for (let i = 0, length = listings.length; i < length; i++) {
+          if (!listings[i].querySelector('[name="gender"]').classList
+          .contains('fa-male')) {
+            listings[i].classList.add('hide')
+          }
+        }
+      }
+      else {
+        for (let i = 0, length = listings.length; i < length; i++) {
+          listings[i].classList.remove('hide')
+        }
+      }
+    })
   }
 }
