@@ -32,7 +32,7 @@
         <a href="{{ url_for('settings') }}"><span class="settings">
           <i class="fas fa-user-cog"></i>
         </span></a>
-        <a href="#"><span class="logout">
+        <a href="{{ url_for('logout_page') }}"><span class="logout">
           <i class="fas fa-sign-out-alt"></i>
         </span></a>
         {% endif %}

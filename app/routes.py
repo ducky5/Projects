@@ -1,14 +1,10 @@
 from app import app, db, login_manager
 from flask import render_template, redirect, url_for
-from flask_login import current_user, login_user, login_required
+from flask_login import login_user, logout_user, login_required
 from app.models import Assumption, User
 from app.forms import RegisterForm, LoginForm
-
-
-# user loader
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+from app.helpers import logged_out
+import user_loader
 
 @app.route('/')
 @login_required
@@ -23,8 +19,7 @@ def settings():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_page():
-    # prevent authenticated users from accessing this route
-    if current_user.is_authenticated:
+    if not logged_out():
         return redirect(url_for('home'))
 
     form = RegisterForm()
@@ -35,15 +30,16 @@ def register_page():
         db.session.add(user_to_create)
         db.session.commit()
 
-        # log the user in after registration
-        login_user(user_to_create)
-
-        return redirect(url_for('home'))
+        # take new user to login page after registration
+        return redirect(url_for('login_page'))
 
     return render_template('register.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
+    if not logged_out():
+        return redirect(url_for('home'))
+
     form = LoginForm()
     if form.validate_on_submit():
         attempted_user = (User.query.filter_by(username=form.username.data)
@@ -56,4 +52,7 @@ def login_page():
 
     return render_template('login.html', form=form)
 
-# implement logout
+@app.route('/logout')
+def logout_page():
+    logout_user()
+    return redirect(url_for('login_page'))
