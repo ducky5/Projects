@@ -4,6 +4,7 @@ SubmitField, SelectField)
 from wtforms.validators import (Length, EqualTo, Email, DataRequired,
 ValidationError, NumberRange)
 from app.models import User
+from app.helpers import password_to_standard, username_to_standard
 
 class RegisterForm(FlaskForm):
     username = StringField(label='Username:', validators=[Length(min=3, max=20),
@@ -29,6 +30,15 @@ class RegisterForm(FlaskForm):
         user = User.query.filter_by(email=check_email_input.data).first()
         if user:
             raise ValidationError('email address unavailable')
+
+    def validate_password1(self, check_password_input):
+        if not password_to_standard(check_password_input.data):
+            raise ValidationError('password not to standard')
+
+    def validate_username(self, check_username_input):
+        if not username_to_standard(check_username_input.data):
+            raise ValidationError('username not to standard')
+
 
 class LoginForm(FlaskForm):
     username = StringField(label='Username:', validators=[DataRequired()],

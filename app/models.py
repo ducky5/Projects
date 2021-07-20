@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     gender = db.Column(db.String(length=6), nullable=False)
 
     def __repr__(self):
-        return f'[{self.username} {self.id}]'
+        return f'<{self.username} {self.id}>'
 
     @property
     def password(self):
