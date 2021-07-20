@@ -9,7 +9,8 @@ import user_loader
 @app.route('/')
 @login_required
 def home():
-    return render_template('home.html')
+    users = User.query.all()
+    return render_template('home.html', users=users)
 
 @app.route('/settings')
 @login_required
@@ -26,7 +27,9 @@ def register_page():
     if form.validate_on_submit():
         user_to_create = User(username=form.username.data,
                               email=form.email.data,
-                              password=form.password1.data)
+                              password=form.password1.data,
+                              age=form.age.data,
+                              gender=form.gender.data)
         db.session.add(user_to_create)
         db.session.commit()
 

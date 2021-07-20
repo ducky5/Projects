@@ -25,11 +25,19 @@ input[type="submit"] {
   /* margin-top: 24px; */
 
 }
-input:not([type="submit"]) {
+input:not([type="submit"]), select {
   padding: 10px;
   font-size: 20px;
   margin-bottom: 8px;
   border: 1px solid rgba(0, 0, 0, .2);
+}
+select {
+  color: rgb(0, 4, 56);
+  background: rgb(247, 247, 247);
+  outline: 0;
+}
+select:focus {
+  border: 1px solid rgb(0, 4, 56);
 }
 input:not([type="submit"]):focus {
   outline: 1px solid rgb(0, 4, 56);

@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import (StringField, IntegerField, PasswordField,
+SubmitField, SelectField)
 from wtforms.validators import (Length, EqualTo, Email, DataRequired,
-ValidationError)
+ValidationError, NumberRange)
 from app.models import User
 
 class RegisterForm(FlaskForm):
@@ -9,7 +10,11 @@ class RegisterForm(FlaskForm):
     DataRequired()], render_kw={'autofocus':True})
     email = StringField(label='Email Address:', validators=[Email(),
     DataRequired()])
-    password1 = PasswordField(label='Password:', validators=[Length(min=6),
+    age = IntegerField(label='Age:', validators=[NumberRange(min=18),
+    DataRequired()])
+    gender = SelectField(label='Gender:', choices=['male', 'female'],
+    validators=[DataRequired()])
+    password1 = PasswordField(label='Password:', validators=[Length(min=8),
     DataRequired()])
     password2 = PasswordField(label='Confirm Password:', validators=
     [EqualTo('password1'), DataRequired()])

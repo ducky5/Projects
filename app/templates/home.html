@@ -35,6 +35,7 @@
 <!-- lister -->
 <ul>
   {% for user in users %}
+  {% if user != current_user %}
   <div class="list-item-wrapper">
     <span class="action-buttons">
       <button type="button" name="button" class="add">
@@ -49,11 +50,12 @@
       <span class="meta-data">
         <span class="gender {{ user.gender }}">
         [<i class="fas fa-{{ user.gender }}" name="gender"></i>]</span>
-        <span class="compatibility">[{{ user.comp }}%]</span>
+        <span class="compatibility">[%]</span>
         <span class="age">[{{ user.age }}]</span>
       </span>
     </li>
   </div>
+  {% endif %}
   {% endfor %}
 </ul>
 {% endblock %}
