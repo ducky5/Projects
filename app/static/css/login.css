@@ -41,7 +41,7 @@ form > span {
   /* margin-top: 5px; */
   text-align: center;
 }
-form > span > a[href="/login"] {
+form > span > a[href^="/register"] {
   text-decoration: underline;
 }
 /* from laptops and small screens up */

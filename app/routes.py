@@ -1,23 +1,31 @@
-from app import app, db
-from flask import render_template, redirect, url_for, flash
-# from flask_login import current_user
+from app import app, db, login_manager
+from flask import render_template, redirect, url_for
+from flask_login import current_user, login_user, login_required
 from app.models import Assumption, User
 from app.forms import RegisterForm, LoginForm
 
+
+# user loader
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
 @app.route('/')
+@login_required
 def home():
     return render_template('home.html')
 
 @app.route('/settings')
-def profile():
+@login_required
+def settings():
     assumptions = Assumption.query.all()
     return render_template('settings.html', assumptions=assumptions)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_page():
     # prevent authenticated users from accessing this route
-    # if current_user.is_authenticated:
-    #     return redirect(url_for('/'))
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
 
     form = RegisterForm()
     if form.validate_on_submit():
@@ -29,17 +37,23 @@ def register_page():
 
         # log the user in after registration
         login_user(user_to_create)
-        flash(f'Account created successfully! You are now logged in as \
-        {user_to_create.username}', category='success')
 
-        return redirect(url_for('/'))
-
-    if form.errors != {}: # if the dict is not empty
-        for err_msg in form.errors.values():
-            flash(err_msg, category='error')
+        return redirect(url_for('home'))
 
     return render_template('register.html', form=form)
 
+@app.route('/login', methods=['GET', 'POST'])
+def login_page():
+    form = LoginForm()
+    if form.validate_on_submit():
+        attempted_user = (User.query.filter_by(username=form.username.data)
+        .first())
+        # if attempted User is not None
+        if attempted_user and attempted_user.check_password_hash(form.password
+        .data):
+            login_user(attempted_user)
+            return redirect(url_for('home'))
 
+    return render_template('login.html', form=form)
 
 # implement logout

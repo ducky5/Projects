@@ -25,13 +25,17 @@
       </span>
       <!-- navigation -->
       <nav>
-        <a href="/"><span class="home"><i class="fas fa-home"></i></span></a>
-        <a href="/settings"><span class="settings">
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('home') }}"><span class="home">
+          <i class="fas fa-home"></i>
+        </span></a>
+        <a href="{{ url_for('settings') }}"><span class="settings">
           <i class="fas fa-user-cog"></i>
         </span></a>
         <a href="#"><span class="logout">
           <i class="fas fa-sign-out-alt"></i>
         </span></a>
+        {% endif %}
       </nav>
     </header>
     <!-- main -->

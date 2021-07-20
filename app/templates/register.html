@@ -8,28 +8,24 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-<!-- error messages -->
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category, message in messages %}
-<p>{{ message[0] }}</p>
-{% endfor %}
-{% endif %}
-{% endwith %}
-
 <!-- flask registration form -->
 <form method="post">
   <!-- against csrf attacks -->
   {{ form.hidden_tag() }}
 
   {{ form.username.label() }}
-  {{ form.username() }}
+  {{ form.username(placeholder='3 to 20 characters') }}
   {{ form.email.label() }}
-  {{ form.email() }}
+  {{ form.email(placeholder='smt@smt.smt') }}
   {{ form.password1.label() }}
-  {{ form.password1() }}
+  {{ form.password1(placeholder='atleast 6 characters') }}
   {{ form.password2.label() }}
-  {{ form.password2() }}
+  {{ form.password2(placeholder='must be equal to the first one') }}
+
+  <span>
+    already have an account?
+    <a href="{{ url_for('login_page') }}">Login</a>
+  </span>
 
   {{ form.submit() }}
 </form>

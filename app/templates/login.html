@@ -1,0 +1,32 @@
+{% extends 'uniform/base.html' %}
+
+{% block css_files %}
+<link rel="stylesheet" href=
+"{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<!-- flask registration form -->
+<form method="post">
+  <!-- against csrf attacks -->
+  {{ form.hidden_tag() }}
+
+  {{ form.username.label() }}
+  {{ form.username() }}
+  {{ form.password.label() }}
+  {{ form.password() }}
+
+  <span>
+    not registered yet?
+    <a href="{{ url_for('register_page') }}">Register</a>
+  </span>
+
+  {{ form.submit() }}
+</form>
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
