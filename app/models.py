@@ -8,6 +8,11 @@ users_to_assumptions = db.Table('users_to_assumptions',
                        db.Column('assumption_id', db.Integer,
                        db.ForeignKey('assumptions.id'), primary_key=True))
 
+users_to_users = db.Table('users_to_users',
+                 db.Column('user_id', db.Integer, db.ForeignKey('users.id'),
+                 primary_key=True))
+
+# models
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -18,9 +23,11 @@ class User(db.Model, UserMixin):
     age = db.Column(db.Integer(), nullable=False)
     gender = db.Column(db.String(length=6), nullable=False)
 
-    # for many to many relationship between User and Assumption through
+    # for many to many relationship between User and Assumption
     assumptions = db.relationship('Assumption', secondary=users_to_assumptions,
     backref=db.backref('users', lazy=True), lazy=True)
+
+    added_users = db.relationship('User', secondary=users_to_users, lazy=True)
 
     def __repr__(self):
         return f'<{self.username} {self.id}>'

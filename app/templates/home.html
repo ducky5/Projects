@@ -38,12 +38,15 @@
   {% if user != current_user %}
   <div class="list-item-wrapper">
     <span class="action-buttons">
-      <button type="button" name="button" class="add">
-        <i class="fas fa-plus-circle"></i>
-      </button>
+      {% if user in current_user.added_users %}
       <button type="button" name="button" class="unadd">
         <i class="fas fa-minus-circle"></i>
       </button>
+      {% else %}
+      <button type="button" name="button" class="add">
+        <i class="fas fa-plus-circle"></i>
+      </button>
+      {% endif %}
     </span>
     <li>
       <span class="username">{{ user.username }}</span>
