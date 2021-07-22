@@ -31,7 +31,7 @@ def password_to_standard(password):
 
 # a standard for username validation
 def username_to_standard(username):
-    if username.isalnum():
+    if username.isalnum(): # username has to be alphanumeric
         return True
     else:
         return False

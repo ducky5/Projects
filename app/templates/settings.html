@@ -23,7 +23,11 @@ href="{{ url_for('static', filename='css/settings.css') }}">
   {% for assumption in assumptions %}
   <div class="card hide" id="learn-card-{{ assumption.id }}">
     <span class="question">{{ assumption.content }}</span>
-    <button type="button" class="learn-btn">{{ assumption.btn_status }}</button>
+    {% if assumption in current_user.assumptions %}
+    <button type="button" class="learn-btn">unadd</button>
+    {% else %}
+    <button type="button" class="learn-btn">add</button>
+    {% endif %}
     <span class="next" title="next">
       <i class="fas fa-arrow-alt-circle-right"></i>
     </span>
