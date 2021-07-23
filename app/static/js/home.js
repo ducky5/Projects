@@ -154,5 +154,33 @@ document.onreadystatechange = function() {
         document.getElementById('female').style.opacity = 0
       }
     })
+
+    add_buttons = document.querySelectorAll('button[class="add"]')
+    unadd_buttons = document.querySelectorAll('button[class="unadd"]')
+
+    // ajax for adding users
+    for (let i = 0, length = add_buttons.length; i < length; i++) {
+      add_buttons[i].addEventListener('click', function() {
+        let xhr = new XMLHttpRequest()
+
+        xhr.open('GET', '/adduser/' + add_buttons[i].getAttribute('USER_ID'),
+        true)
+
+        xhr.send()
+      })
+    }
+
+      // ajax for unadding users
+      for (let i = 0, length = unadd_buttons.length; i < length; i++) {
+        unadd_buttons[i].addEventListener('click', function() {
+          let xhr = new XMLHttpRequest()
+
+          xhr.open('GET', '/unadduser/' + unadd_buttons[i].getAttribute('USER_ID'),
+          true)
+
+          xhr.send()
+        })
+      }
+
   }
 }

@@ -42,11 +42,13 @@
   {% if user in current_user.added_users %}added{% endif %}">
     <span class="action-buttons">
       {% if user in current_user.added_users %}
-      <button type="button" name="button" class="unadd" title='unadd'>
+      <button type="button" name="button" class="unadd" title="unadd"
+      USER_ID="{{ user.id }}">
         <i class="fas fa-minus-circle"></i>
       </button>
       {% else %}
-      <button type="button" name="button" class="add" title='add'>
+      <button type="button" name="button" class="add" title="add"
+      USER_ID="{{ user.id }}">
         <i class="fas fa-plus-circle"></i>
       </button>
       {% endif %}

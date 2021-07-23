@@ -1,6 +1,6 @@
 from app import app, db, login_manager
 from flask import render_template, redirect, url_for
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from app.models import Assumption, User
 from app.forms import RegisterForm, LoginForm
 from app.helpers import logged_out
@@ -59,3 +59,35 @@ def login_page():
 def logout_page():
     logout_user()
     return redirect(url_for('login_page'))
+
+@app.route('/adduser/<userid>')
+def add_user(userid):
+    if userid != current_user.id:
+        user_to_add = User.query.filter_by(id=userid).first()
+
+        if user_to_add not in current_user.added_users and user_to_add != None:
+            current_user.added_users.append(user_to_add)
+            db.session.add(current_user)
+            db.session.commit()
+
+            return 'success'
+
+        return 'failure'
+
+    return 'failure'
+
+@app.route('/unadduser/<userid>')
+def unadd_user(userid):
+    if userid != current_user.id:
+        user_to_unadd = User.query.filter_by(id=userid).first()
+
+        if user_to_unadd in current_user.added_users and user_to_unadd != None:
+            current_user.added_users.remove(user_to_unadd)
+            db.session.add(current_user)
+            db.session.commit()
+
+            return 'success'
+
+        return 'failure'
+
+    return 'failure'
