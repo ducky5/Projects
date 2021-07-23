@@ -62,7 +62,7 @@ def logout_page():
 
 @app.route('/adduser/<userid>')
 def add_user(userid):
-    if userid != current_user.id:
+    if int(userid) != current_user.id:
         user_to_add = User.query.filter_by(id=userid).first()
 
         if user_to_add not in current_user.added_users and user_to_add != None:
@@ -78,7 +78,7 @@ def add_user(userid):
 
 @app.route('/unadduser/<userid>')
 def unadd_user(userid):
-    if userid != current_user.id:
+    if int(userid) != current_user.id:
         user_to_unadd = User.query.filter_by(id=userid).first()
 
         if user_to_unadd in current_user.added_users and user_to_unadd != None:

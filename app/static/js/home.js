@@ -155,13 +155,34 @@ document.onreadystatechange = function() {
       }
     })
 
+
+    // these have the same length
     add_buttons = document.querySelectorAll('button[class="add"]')
     unadd_buttons = document.querySelectorAll('button[class="unadd"]')
+
+    // on page load
+    for (let i = 0, length = add_buttons.length; i < length; i++) {
+      if (add_buttons[i].parentElement.parentElement.classList
+      .contains('added')) {
+        add_buttons[i].classList.add('hide')
+      }
+      else {
+        unadd_buttons[i].classList.add('hide')
+      }
+    }
 
     // ajax for adding users
     for (let i = 0, length = add_buttons.length; i < length; i++) {
       add_buttons[i].addEventListener('click', function() {
         let xhr = new XMLHttpRequest()
+
+        xhr.onload = function() {
+          if (this.status == 200) {
+            add_buttons[i].parentElement.parentElement.classList.add('added')
+            unadd_buttons[i].classList.remove('hide')
+            add_buttons[i].classList.add('hide')
+          }
+        }
 
         xhr.open('GET', '/adduser/' + add_buttons[i].getAttribute('USER_ID'),
         true)
@@ -175,8 +196,17 @@ document.onreadystatechange = function() {
         unadd_buttons[i].addEventListener('click', function() {
           let xhr = new XMLHttpRequest()
 
-          xhr.open('GET', '/unadduser/' + unadd_buttons[i].getAttribute('USER_ID'),
-          true)
+          xhr.onload = function() {
+            if (this.status == 200) {
+              unadd_buttons[i].parentElement.parentElement.classList
+              .remove('added')
+              add_buttons[i].classList.remove('hide')
+              unadd_buttons[i].classList.add('hide')
+            }
+          }
+
+          xhr.open('GET', '/unadduser/' + unadd_buttons[i]
+          .getAttribute('USER_ID'), true)
 
           xhr.send()
         })
