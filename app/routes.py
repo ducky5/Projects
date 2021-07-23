@@ -3,14 +3,15 @@ from flask import render_template, redirect, url_for
 from flask_login import login_user, logout_user, login_required, current_user
 from app.models import Assumption, User
 from app.forms import RegisterForm, LoginForm
-from app.helpers import logged_out
+from app.helpers import logged_out, calculate_compatibility
 import user_loader
 
 @app.route('/')
 @login_required
 def home():
     users = User.query.all()
-    return render_template('home.html', users=users)
+    return render_template('home.html', users=users,
+    calculate_compatibility=calculate_compatibility)
 
 @app.route('/settings')
 @login_required

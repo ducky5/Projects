@@ -55,7 +55,7 @@
       <span class="meta-data">
         <span class="gender {{ user.gender }}">
         [<i class="fas fa-{{ user.gender }}" name="gender"></i>]</span>
-        <span class="compatibility">[%]</span>
+        <span class="compatibility">[{{ calculate_compatibility(user.id) }}%]</span>
         <span class="age">[{{ user.age }}]</span>
       </span>
     </li>

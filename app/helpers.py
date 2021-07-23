@@ -1,4 +1,6 @@
 from flask_login import current_user
+from app.models import User, Assumption
+from math import *
 
 # to check if user is logged out
 def logged_out():
@@ -35,3 +37,23 @@ def username_to_standard(username):
         return True
     else:
         return False
+
+# function to calculate compatibility of two users(current_user and other)
+def calculate_compatibility(userid):
+    commons = 0
+    user = User.query.filter_by(id=userid).first()
+    user_length = len(user.assumptions)
+    main_length = len(current_user.assumptions)
+
+    for assumption in current_user.assumptions:
+        if assumption in user.assumptions:
+            commons += 1
+
+    if main_length > user_length:
+        return round((commons/main_length) * 100, 2)
+    elif user_length > main_length:
+        return round((commons/user_length) * 100, 2)
+    elif user_length == 0 or main_length == 0:
+        return round(0, 2)
+    else:
+        return round((commons/main_length) * 100, 2)
