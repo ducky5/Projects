@@ -56,11 +56,13 @@ def login_page():
     return render_template('login.html', form=form)
 
 @app.route('/logout')
+@login_required
 def logout_page():
     logout_user()
     return redirect(url_for('login_page'))
 
 @app.route('/adduser/<userid>')
+@login_required
 def add_user(userid):
     if int(userid) != current_user.id:
         user_to_add = User.query.filter_by(id=userid).first()
@@ -77,6 +79,7 @@ def add_user(userid):
     return 'failure'
 
 @app.route('/unadduser/<userid>')
+@login_required
 def unadd_user(userid):
     if int(userid) != current_user.id:
         user_to_unadd = User.query.filter_by(id=userid).first()
@@ -89,5 +92,35 @@ def unadd_user(userid):
             return 'success'
 
         return 'failure'
+
+    return 'failure'
+
+@app.route('/addassumption/<assid>')
+@login_required
+def add_assumption(assid):
+    assumption_to_add = Assumption.query.filter_by(id=assid).first()
+
+    if (assumption_to_add is not None and assumption_to_add not in current_user
+    .assumptions):
+        current_user.assumptions.append(assumption_to_add)
+        db.session.add(current_user)
+        db.session.commit()
+
+        return 'success'
+
+    return 'failure'
+
+@app.route('/unaddassumption/<assid>')
+@login_required
+def unadd_assumption(assid):
+    assumption_to_unadd = Assumption.query.filter_by(id=assid).first()
+
+    if (assumption_to_unadd is not None and assumption_to_unadd in current_user
+    .assumptions):
+        current_user.assumptions.remove(assumption_to_unadd)
+        db.session.add(current_user)
+        db.session.commit()
+
+        return 'success'
 
     return 'failure'

@@ -14,20 +14,20 @@ href="{{ url_for('static', filename='css/settings.css') }}">
     <i class="fas fa-caret-square-down"></i>
   </div>
   <div class="tab expand_unexpand" id="pmt-questions">
-    <span>PMT questions</span>
+    <span>My Assumptions</span>
     <i class="fas fa-caret-square-down"></i>
   </div>
 </span>
 <!-- cards -->
 <div id="cards-wrapper" class="hide">
   {% for assumption in assumptions %}
-  <div class="card hide" id="learn-card-{{ assumption.id }}">
+  <div class="card hide {% if assumption in current_user.assumptions %}added
+  {% endif %}" id="learn-card-{{ assumption.id }}">
     <span class="question">{{ assumption.content }}</span>
-    {% if assumption in current_user.assumptions %}
-    <button type="button" class="learn-btn">unadd</button>
-    {% else %}
-    <button type="button" class="learn-btn">add</button>
-    {% endif %}
+    <button type="button" class="learn-btn" ASSUMPTION_ID="{{ assumption.id }}"
+    name="unadd">unadd</button>
+    <button type="button" class="learn-btn" ASSUMPTION_ID="{{ assumption.id }}"
+    name="add">add</button>
     <span class="next" title="next">
       <i class="fas fa-arrow-alt-circle-right"></i>
     </span>
