@@ -38,8 +38,7 @@ document.onreadystatechange = function() {
     .addEventListener('click', function() {
       if (this.querySelector('i').style.opacity == 1) {
         for (let i = 0, length = listings.length; i < length; i++) {
-          if (listings[i].querySelector('.age').innerHTML
-          .match(/(\d+)/)[0] != 18) {
+          if (!listings[i].classList.contains('my-age')) {
             listings[i].classList.add('hide')
           }
         }
@@ -63,8 +62,7 @@ document.onreadystatechange = function() {
     .addEventListener('click', function() {
       if (this.querySelector('i').style.opacity == 1) {
         for (let i = 0, length = listings.length; i < length; i++) {
-          if (listings[i].querySelector('.age').innerHTML
-          .match(/(\d+)/)[0] <= 18) {
+          if (!listings[i].classList.contains('older-than-me')) {
             listings[i].classList.add('hide')
           }
         }
@@ -115,6 +113,30 @@ document.onreadystatechange = function() {
         for (let i = 0, length = listings.length; i < length; i++) {
           if (!listings[i].querySelector('[name="gender"]').classList
           .contains('fa-male')) {
+            listings[i].classList.add('hide')
+          }
+        }
+      }
+      else {
+        for (let i = 0, length = listings.length; i < length; i++) {
+          listings[i].classList.remove('hide')
+        }
+        // uncheck all other filter-buttons except male/female
+        for (let i = 0, length = buttons.length-2; i < length; i++) {
+          buttons[i].querySelector('i').style.opacity = 0
+        }
+        // uncheck male/female buttons
+        document.getElementById('male').style.opacity = 0
+        document.getElementById('female').style.opacity = 0
+      }
+    })
+
+    // added-only button
+    document.querySelector('button[name="added-only"]')
+    .addEventListener('click', function() {
+      if (this.querySelector('[id="added-only"]').style.opacity == 1) {
+        for (let i = 0, length = listings.length; i < length; i++) {
+          if (!listings[i].classList.contains('added')) {
             listings[i].classList.add('hide')
           }
         }

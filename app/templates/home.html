@@ -36,14 +36,17 @@
 <ul>
   {% for user in users %}
   {% if user != current_user %}
-  <div class="list-item-wrapper">
+  <div class="list-item-wrapper
+  {% if user.age == current_user.age %}my-age{% endif %}
+  {% if user.age > current_user.age %}older-than-me{% endif %}
+  {% if user in current_user.added_users %}added{% endif %}">
     <span class="action-buttons">
       {% if user in current_user.added_users %}
-      <button type="button" name="button" class="unadd">
+      <button type="button" name="button" class="unadd" title='unadd'>
         <i class="fas fa-minus-circle"></i>
       </button>
       {% else %}
-      <button type="button" name="button" class="add">
+      <button type="button" name="button" class="add" title='add'>
         <i class="fas fa-plus-circle"></i>
       </button>
       {% endif %}

@@ -4,13 +4,13 @@ from flask_login import UserMixin
 # association table(for many to many relationship)
 users_to_assumptions = db.Table('users_to_assumptions',
                        db.Column('user_id', db.Integer,
-                       db.ForeignKey('users.id'), primary_key=True),
+                       db.ForeignKey('users.id')),
                        db.Column('assumption_id', db.Integer,
-                       db.ForeignKey('assumptions.id'), primary_key=True))
+                       db.ForeignKey('assumptions.id')))
 
-users_to_users = db.Table('users_to_users',
-                 db.Column('user_id', db.Integer, db.ForeignKey('users.id'),
-                 primary_key=True))
+users_to_users = db.Table('users_to_users', db.Column('added_id', db.Integer,
+                 db.ForeignKey('users.id')),
+                 db.Column('adder_id', db.Integer, db.ForeignKey('users.id')))
 
 # models
 class User(db.Model, UserMixin):
@@ -27,7 +27,11 @@ class User(db.Model, UserMixin):
     assumptions = db.relationship('Assumption', secondary=users_to_assumptions,
     backref=db.backref('users', lazy=True), lazy=True)
 
-    added_users = db.relationship('User', secondary=users_to_users, lazy=True)
+    # for many to many relationship between User and itself
+    added_users = db.relationship('User', secondary=users_to_users,
+                  primaryjoin=(users_to_users.c.added_id == id),
+                  secondaryjoin=(users_to_users.c.adder_id == id),
+                  backref=db.backref('adder_users', lazy=True), lazy=True)
 
     def __repr__(self):
         return f'<{self.username} {self.id}>'
