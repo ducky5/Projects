@@ -53,3 +53,7 @@ class Assumption(db.Model):
 
     id = db.Column(db.Integer(), primary_key=True)
     content = db.Column(db.String())
+    content_type = db.Column(db.String())
+
+    def __repr__(self):
+        return f'<{self.content_type} {self.id}>'
