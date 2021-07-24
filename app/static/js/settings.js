@@ -63,6 +63,8 @@ document.onreadystatechange = function() {
       add_buttons[i].addEventListener('click', function() {
         let xhr = new XMLHttpRequest()
 
+        let data = {'id': add_buttons[i].getAttribute('ASSUMPTION_ID')}
+
         xhr.onload = function() {
           if (this.status == 200) {
             add_buttons[i].classList.add('hide')
@@ -70,16 +72,17 @@ document.onreadystatechange = function() {
           }
         }
 
-        xhr.open('GET', '/addassumption/' + add_buttons[i]
-        .getAttribute('ASSUMPTION_ID'), true)
-
-        xhr.send()
+        xhr.open('POST', '/addassumption', true)
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.send(JSON.stringify(data))
       })
     }
 
     for (let i = 0, length = unadd_buttons.length; i < length; i++) {
       unadd_buttons[i].addEventListener('click', function() {
         let xhr = new XMLHttpRequest()
+
+        let data = {'id': unadd_buttons[i].getAttribute('ASSUMPTION_ID')}
 
         xhr.onload = function() {
           if (this.status == 200) {
@@ -88,10 +91,9 @@ document.onreadystatechange = function() {
           }
         }
 
-        xhr.open('GET', '/unaddassumption/' + unadd_buttons[i]
-        .getAttribute('ASSUMPTION_ID'), true)
-
-        xhr.send()
+        xhr.open('POST', '/unaddassumption', true)
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.send(JSON.stringify(data))
       })
     }
   }

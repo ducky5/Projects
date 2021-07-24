@@ -1,5 +1,5 @@
 from app import app, db, login_manager
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, request
 from flask_login import login_user, logout_user, login_required, current_user
 from app.models import Assumption, User
 from app.forms import RegisterForm, LoginForm
@@ -62,11 +62,13 @@ def logout_page():
     logout_user()
     return redirect(url_for('login_page'))
 
-@app.route('/adduser/<userid>')
+@app.route('/adduser', methods=['POST'])
 @login_required
-def add_user(userid):
-    if int(userid) != current_user.id:
-        user_to_add = User.query.filter_by(id=userid).first()
+def add_user():
+    user_id = int(request.json['id'])
+
+    if user_id != current_user.id:
+        user_to_add = User.query.filter_by(id=user_id).first()
 
         if user_to_add not in current_user.added_users and user_to_add != None:
             current_user.added_users.append(user_to_add)
@@ -79,11 +81,14 @@ def add_user(userid):
 
     return 'failure'
 
-@app.route('/unadduser/<userid>')
+
+@app.route('/unadduser', methods=['POST'])
 @login_required
-def unadd_user(userid):
-    if int(userid) != current_user.id:
-        user_to_unadd = User.query.filter_by(id=userid).first()
+def unadd_user():
+    user_id = int(request.json['id'])
+
+    if user_id != current_user.id:
+        user_to_unadd = User.query.filter_by(id=user_id).first()
 
         if user_to_unadd in current_user.added_users and user_to_unadd != None:
             current_user.added_users.remove(user_to_unadd)
@@ -96,13 +101,14 @@ def unadd_user(userid):
 
     return 'failure'
 
-@app.route('/addassumption/<assid>')
+@app.route('/addassumption', methods=['POST'])
 @login_required
-def add_assumption(assid):
-    assumption_to_add = Assumption.query.filter_by(id=assid).first()
+def add_assumption():
+    assumption_id = int(request.json['id'])
+    assumption_to_add = Assumption.query.filter_by(id=assumption_id).first()
 
-    if (assumption_to_add is not None and assumption_to_add not in current_user
-    .assumptions):
+    if (assumption_to_add not in current_user.assumptions and assumption_to_add
+    is not None):
         current_user.assumptions.append(assumption_to_add)
         db.session.add(current_user)
         db.session.commit()
@@ -111,13 +117,14 @@ def add_assumption(assid):
 
     return 'failure'
 
-@app.route('/unaddassumption/<assid>')
+@app.route('/unaddassumption', methods=['POST'])
 @login_required
-def unadd_assumption(assid):
-    assumption_to_unadd = Assumption.query.filter_by(id=assid).first()
+def unadd_assumption():
+    assumption_id = int(request.json['id'])
+    assumption_to_unadd = Assumption.query.filter_by(id=assumption_id).first()
 
-    if (assumption_to_unadd is not None and assumption_to_unadd in current_user
-    .assumptions):
+    if (assumption_to_unadd in current_user.assumptions and assumption_to_unadd
+    is not None):
         current_user.assumptions.remove(assumption_to_unadd)
         db.session.add(current_user)
         db.session.commit()
