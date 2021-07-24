@@ -8,21 +8,21 @@ import user_loader
 
 @app.route('/')
 @login_required
-def home():
+def home_page():
     users = User.query.all()
     return render_template('home.html', users=users,
     calculate_compatibility=calculate_compatibility)
 
 @app.route('/settings')
 @login_required
-def settings():
+def assumptions_page():
     assumptions = Assumption.query.all()
-    return render_template('settings.html', assumptions=assumptions)
+    return render_template('assumptions.html', assumptions=assumptions)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_page():
     if not logged_out():
-        return redirect(url_for('home'))
+        return redirect(url_for('home_page'))
 
     form = RegisterForm()
     if form.validate_on_submit():
@@ -42,7 +42,7 @@ def register_page():
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
     if not logged_out():
-        return redirect(url_for('home'))
+        return redirect(url_for('home_page'))
 
     form = LoginForm()
     if form.validate_on_submit():
@@ -52,7 +52,7 @@ def login_page():
         if attempted_user and attempted_user.check_password_hash(form.password
         .data):
             login_user(attempted_user)
-            return redirect(url_for('home'))
+            return redirect(url_for('home_page'))
 
     return render_template('login.html', form=form)
 

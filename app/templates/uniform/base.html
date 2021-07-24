@@ -20,18 +20,20 @@
       <!-- brand -->
       <span>
         <abbr title="Personality Matching Tool.">
-          <a href="/">PMT</a>
+          <a href="{{ url_for('home_page') }}">PMT</a>
         </abbr>
       </span>
       <!-- navigation -->
       <nav>
         {% if current_user.is_authenticated %}
-        <a href="{{ url_for('home') }}" title="home"><span class="home">
+        <a href="{{ url_for('home_page') }}" title="home"><span class="home">
           <i class="fas fa-home"></i>
         </span></a>
-        <a href="{{ url_for('settings') }}" title="settings"><span class="settings">
+        <a href="{{ url_for('assumptions_page') }}" title="settings">
+          <span class="assumptions">
           <i class="fas fa-user-cog"></i>
-        </span></a>
+          </span>
+        </a>
         <a href="{{ url_for('logout_page') }}" title="logout"><span class="logout">
           <i class="fas fa-sign-out-alt"></i>
         </span></a>
