@@ -71,4 +71,21 @@ button[name="send"] {
   border: 0;
   font-size: 25px;
   flex-basis: 18%;
+  cursor: pointer;
+}
+.scrollable-chat {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 120px;
+  padding: 10px;
+}
+/* from laptops and small screens up */
+@media (min-width: 769px) {
+  .chat-container {
+    width: 45%;
+    padding: 15px;
+  }
+  .scrollable-chat {
+    height: 250px;
+  }
 }

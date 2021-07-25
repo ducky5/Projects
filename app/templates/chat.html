@@ -9,24 +9,28 @@
 {% block content %}
 <div class="chat-container">
   <div class="recipient-username">{{ recipient_username }}</div>
-  {% for message in messages %}
-  {% if message.sender_id == current_user.id %}
-  <div class="sender-pronoun">You</div>
-  {% else %}
-  {% if recipient_gender == 'female' %}
-  <div class="recipient-pronoun">Her</div>
-  {% else %}
-  <div class="recipient-pronoun">Him</div>
-  {% endif %}
-  {% endif %}
+  
+  <div class="scrollable-chat">
+    {% for message in messages %}
+    {% if message.sender_id == current_user.id %}
+    <div class="sender-pronoun">You</div>
+    {% else %}
+    {% if recipient_gender == 'female' %}
+    <div class="recipient-pronoun">Her</div>
+    {% else %}
+    <div class="recipient-pronoun">Him</div>
+    {% endif %}
+    {% endif %}
 
-  {% if message.sender_id == current_user %}
-  <div class="sender-message">{{ message.message }}</div>
-  {% else %}
-  <div class="recipient-message">{{ message.message }}</div>
-  {% endif %}
+    {% if message.sender_id == current_user %}
+    <div class="sender-message">{{ message.message }}</div>
+    {% else %}
+    <div class="recipient-message">{{ message.message }}</div>
+    {% endif %}
 
-  {% endfor %}
+    {% endfor %}
+
+  </div>
 
   <div class="send-message">
     <textarea type="text" name="message" placeholder="type here..."
