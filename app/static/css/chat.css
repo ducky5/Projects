@@ -2,10 +2,8 @@
   background: rgb(247, 247, 247);
   border: 1px solid rgba(0, 0, 0, .09);
   border-radius: 5px;
-  margin: 25px auto 0 auto;
-  /* width: 90%; */
-  /* padding: 30px; */
-  /* margin: 20px; */
+  margin: 25px auto 15px auto;
+  width: 90%;
 }
 .recipient-username {
   font-family: roboto-regular;
@@ -13,7 +11,6 @@
   color: rgb(0, 4, 56);
   text-align: center;
   margin-bottom: 20px;
-  /* border-bottom: 1px solid rgba(0, 0, 0, .09); */
   padding: 10px;
 }
 .recipient-pronoun, .recipient-message {
@@ -52,7 +49,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 40px;
-  padding: 20px;
+  padding: 5px;
 }
 textarea[name="message"] {
   padding: 3px 10px 0 10px;
@@ -62,14 +59,16 @@ textarea[name="message"] {
   resize: none;
   flex-basis: 80%;
   line-height: 1.5em;
+  border: 1px solid rgb(39, 219, 26);
+}
+textarea[name="message"]:focus {
+  outline: 0;
 }
 button[name="send"] {
   padding: 8px;
   color: rgb(247, 247, 247);
-  background: rgb(0, 4, 56);
+  background: rgb(39, 219, 26);
   border: 0;
-  font-family: roboto-bold;
-  font-size: 20px;
-  flex-basis: 15%;
-  /* align-self: center; */
+  font-size: 25px;
+  flex-basis: 18%;
 }

@@ -29,12 +29,15 @@
   {% endfor %}
 
   <div class="send-message">
-    <textarea type="text" name="message" placeholder="type here..."></textarea>
-    <button type="button" name="send">Send</button>
+    <textarea type="text" name="message" placeholder="type here..."
+    id="text-to-send"></textarea>
+    <button type="button" name="send" id="send-text">
+      <i class="fas fa-paper-plane"></i>
+    </button>
   </div>
 </div>
 {% endblock %}
 
 {% block javascript %}
-
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
 {% endblock %}

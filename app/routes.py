@@ -143,7 +143,8 @@ def chat_page(recipient_id):
 
     if recipient is not None:
         messages = []
-        # search the entire Message table
+        # search the entire Message table for messages with either of the users
+        # as sender and either as recipient (algorithm is linear search :/)
         for message in Message.query.all():
             if ((message.sender_id == recipient.id or message.sender_id ==
             current_user.id) and (message.recipient_id == recipient.id or
