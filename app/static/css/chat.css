@@ -38,6 +38,7 @@
   border: 1px solid rgba(0, 0, 0, .09);
   margin: 0 auto 0 auto;
   width: 80%;
+  word-wrap: break-word;
 }
 .recipient-message {
   border-radius: 10px 0 10px 0;
@@ -76,7 +77,7 @@ button[name="send"] {
 .scrollable-chat {
   overflow-x: hidden;
   overflow-y: auto;
-  height: 120px;
+  height: 160px;
   padding: 10px;
 }
 /* from laptops and small screens up */

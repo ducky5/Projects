@@ -70,7 +70,8 @@ def add_user():
     if user_id != current_user.id:
         user_to_add = User.query.filter_by(id=user_id).first()
 
-        if user_to_add not in current_user.added_users and user_to_add != None:
+        if (user_to_add not in current_user.added_users and user_to_add is not
+        None):
             current_user.added_users.append(user_to_add)
             db.session.add(current_user)
             db.session.commit()
@@ -90,7 +91,8 @@ def unadd_user():
     if user_id != current_user.id:
         user_to_unadd = User.query.filter_by(id=user_id).first()
 
-        if user_to_unadd in current_user.added_users and user_to_unadd != None:
+        if (user_to_unadd in current_user.added_users and user_to_unadd is not
+        None):
             current_user.added_users.remove(user_to_unadd)
             db.session.add(current_user)
             db.session.commit()
@@ -151,10 +153,25 @@ def chat_page(recipient_id):
             message.recipient_id == current_user.id)):
                 messages.append(message)
 
-        print(messages)
-
         return render_template('chat.html', messages=messages,
         recipient_username=recipient.username,
-        recipient_gender=recipient.gender)
+        recipient_gender=recipient.gender, recipient_id=recipient_id)
+
+    return 'failure'
+
+@app.route('/save-message', methods=['POST'])
+@login_required
+def save_message():
+    recipient_id = request.json['recipient_id']
+    recipient = User.query.filter_by(id=recipient_id).first()
+    message = request.json['message']
+
+    if recipient_id != current_user.id and recipient and message:
+        message = Message(sender_id=current_user.id, recipient_id=recipient_id,
+                          message=message)
+        db.session.add(message)
+        db.session.commit()
+
+        return 'success'
 
     return 'failure'

@@ -9,8 +9,8 @@
 {% block content %}
 <div class="chat-container">
   <div class="recipient-username">{{ recipient_username }}</div>
-  
-  <div class="scrollable-chat">
+
+  <div class="scrollable-chat" id="scrollable-chat">
     {% for message in messages %}
     {% if message.sender_id == current_user.id %}
     <div class="sender-pronoun">You</div>
@@ -22,7 +22,7 @@
     {% endif %}
     {% endif %}
 
-    {% if message.sender_id == current_user %}
+    {% if message.sender_id == current_user.id %}
     <div class="sender-message">{{ message.message }}</div>
     {% else %}
     <div class="recipient-message">{{ message.message }}</div>
@@ -35,7 +35,8 @@
   <div class="send-message">
     <textarea type="text" name="message" placeholder="type here..."
     id="text-to-send"></textarea>
-    <button type="button" name="send" id="send-text">
+    <button type="button" name="send" id="send-text"
+    RECIPIENT_ID="{{ recipient_id }}">
       <i class="fas fa-paper-plane"></i>
     </button>
   </div>
