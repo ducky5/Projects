@@ -1,7 +1,7 @@
 from app import app, db, login_manager
 from flask import render_template, redirect, url_for, request
 from flask_login import login_user, logout_user, login_required, current_user
-from app.models import Assumption, User
+from app.models import Assumption, User, Message
 from app.forms import RegisterForm, LoginForm
 from app.helpers import logged_out, calculate_compatibility
 import user_loader
@@ -130,5 +130,30 @@ def unadd_assumption():
         db.session.commit()
 
         return 'success'
+
+    return 'failure'
+
+@app.route('/chat/user/<int:recipient_id>')
+@login_required
+def chat_page(recipient_id):
+    if recipient_id == current_user.id:
+        return 'failure'
+
+    recipient = User.query.filter_by(id=recipient_id).first()
+
+    if recipient is not None:
+        messages = []
+        # search the entire Message table
+        for message in Message.query.all():
+            if ((message.sender_id == recipient.id or message.sender_id ==
+            current_user.id) and (message.recipient_id == recipient.id or
+            message.recipient_id == current_user.id)):
+                messages.append(message)
+
+        print(messages)
+
+        return render_template('chat.html', messages=messages,
+        recipient_username=recipient.username,
+        recipient_gender=recipient.gender)
 
     return 'failure'

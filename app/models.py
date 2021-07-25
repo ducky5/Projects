@@ -57,3 +57,11 @@ class Assumption(db.Model):
 
     def __repr__(self):
         return f'<{self.content_type} {self.id}>'
+
+class Message(db.Model):
+    __tablename__ = 'messages'
+
+    id = db.Column(db.Integer(), primary_key=True)
+    sender_id = db.Column(db.Integer(), nullable=False)
+    recipient_id = db.Column(db.Integer(), nullable=False)
+    message = db.Column(db.String(), nullable=False)
