@@ -1,6 +1,7 @@
-from app import app, db, login_manager
+from app import app, db, login_manager, socketio, thread, thread_lock
 from flask import render_template, redirect, url_for, request
 from flask_login import login_user, logout_user, login_required, current_user
+from flask_socketio import emit
 from app.models import Assumption, User, Message
 from app.forms import RegisterForm, LoginForm
 from app.helpers import logged_out, calculate_compatibility
@@ -175,3 +176,25 @@ def save_message():
         return 'success'
 
     return 'failure'
+
+# event triggered by client, purpose: receive sender msg, emit it back to client
+@socketio.event
+def send_sender_msg_to_client(message):
+    emit_back_response = {
+        'recipient': (User.query.filter_by(id=message['recipient_id']).first()
+        .serialize),
+        'message': Message.query.filter_by(sender_id=current_user.id, \
+        recipient_id=message['recipient_id'])[-1].serialize
+    }
+
+    emit('get_sender_msg', emit_back_response)
+
+# event triggered by client upon connection, purpose: get latest message from
+# database, emit it back to client
+@socketio.event
+def send_latest_msg_to_client(recipient_id):
+    while True:
+        socketio.sleep(.5)
+        latest_message = Message.query.filter_by(sender_id=current_user.id, \
+        recipient_id=recipient_id)[-1].message
+        emit('get_latest_msg', latest_message)

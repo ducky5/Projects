@@ -37,6 +37,19 @@ class User(db.Model, UserMixin):
         return f'<{self.username} {self.id}>'
 
     @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'password_hash': self.password_hash,
+            'age': self.age,
+            'gender': self.gender,
+            'assumptions': self.assumptions,
+            'added_users': self.added_users
+        }
+
+    @property
     def password(self):
         return self.password
 
@@ -65,3 +78,12 @@ class Message(db.Model):
     sender_id = db.Column(db.Integer(), nullable=False)
     recipient_id = db.Column(db.Integer(), nullable=False)
     message = db.Column(db.String(), nullable=False)
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'sender_id': self.sender_id,
+            'recipient_id': self.recipient_id,
+            'message': self.message
+        }

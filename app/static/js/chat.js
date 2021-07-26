@@ -1,5 +1,23 @@
 document.onreadystatechange = function() {
   if (document.readyState === 'complete') {
+    let socket = io()
+
+    // send recipient id on connect
+    socket.on('connect', function(msg) {
+      socket.emit('send_latest_msg_to_client',
+      document.getElementById('send-text').getAttribute('RECIPIENT_ID'))
+    })
+
+    // get sender msg on successfull send
+    socket.on('get_sender_msg', function(msg) {
+      console.log(msg.message.message)
+    })
+
+    // get the latest msg in database
+    socket.on('get_latest_msg', function(msg) {
+      console.log(msg)
+    })
+
     // to show the most recent messages and not the beginning of conversation
     chat_scrollable = document.getElementById('scrollable-chat')
     chat_scrollable.scrollTo(0, chat_scrollable.scrollHeight)
@@ -14,8 +32,11 @@ document.onreadystatechange = function() {
 
       xhr.onload = function() {
         if (this.status == 200) {
-          document.getElementById('text-to-send').value = ''
-          console.log(this.responseText)
+          if (this.responseText == 'success') {
+            document.getElementById('text-to-send').value = ''
+            // send to socket as well
+            socket.emit('send_message', data)
+          }
         }
       }
 
@@ -36,8 +57,11 @@ document.onreadystatechange = function() {
 
         xhr.onload = function() {
           if (this.status == 200) {
-            document.getElementById('text-to-send').value = ''
-            console.log(this.responseText)
+            if (this.responseText == 'success') {
+              document.getElementById('text-to-send').value = ''
+              // send to socket as well
+              socket.emit('send_message', data)
+            }
           }
         }
 
