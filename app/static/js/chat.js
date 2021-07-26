@@ -8,13 +8,14 @@ document.onreadystatechange = function() {
     })
 
     // get sender msg on successfull send
-    socket.on('get_sender_msg', function(msg) {
-      // console.log(msg.message.message)
-    })
+    // socket.on('get_sender_msg', function(msg) {
+    //   // console.log(msg.message.message)
+    // })
 
     let all_visible_messages = document.getElementsByClassName('messages')
     // get the latest msg in database
     socket.on('get_latest_msg', function(msg) {
+      if (msg.emit_finished) {
         let message_to_html = '<div class="recipient-pronoun">' +
         msg.recipient_pronoun + '</div>' + '<div class="recipient-message">' +
         msg.message + '</div>'
@@ -23,6 +24,9 @@ document.onreadystatechange = function() {
 
         chat_scrollable.scrollTo(0, chat_scrollable.scrollHeight)
 
+        document.getElementById('text-to-send').disabled = false
+        document.getElementById('text-to-send').focus()
+      }
       // console.log(msg.id, Number(all_visible_messages[all_visible_messages.length-1].getAttribute('MESSAGE_ID')))
     })
     // console.log(all_visible_messages[all_visible_messages.length-1])
@@ -53,6 +57,8 @@ document.onreadystatechange = function() {
             .innerHTML += message_to_html
 
             chat_scrollable.scrollTo(0, chat_scrollable.scrollHeight)
+
+            document.getElementById('text-to-send').disabled = true
           }
         }
       }
@@ -86,6 +92,8 @@ document.onreadystatechange = function() {
               .innerHTML += message_to_html
 
               chat_scrollable.scrollTo(0, chat_scrollable.scrollHeight)
+
+              document.getElementById('text-to-send').disabled = true
             }
           }
         }
