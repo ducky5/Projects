@@ -195,5 +195,33 @@ def send_sender_msg_to_client(message):
 def send_latest_msg_to_client(recipient_id):
     while True:
         socketio.sleep(.5)
-        latest_message = Message.query.filter_by(sender_id=recipient_id, recipient_id=current_user.id)[-1].message
-        emit('get_latest_msg', latest_message)
+        recipient_messages = Message.query.filter_by(sender_id=recipient_id,
+        recipient_id=current_user.id).first()
+        recipient_pronoun = ''
+        if User.query.filter_by(id=recipient_id).first().gender == 'female':
+            recipient_pronoun = 'Her'
+        else:
+            recipient_pronoun = 'Him'
+
+        if recipient_messages is not None:
+            # latest_message = Message.query.filter_by(sender_id=recipient_id,
+            # recipient_id=current_user.id)[-1].message
+            latest_message = {
+                'message': Message.query.filter_by(sender_id=recipient_id,
+                recipient_id=current_user.id)[-1].message,
+                'id': Message.query.filter_by(sender_id=recipient_id,
+                recipient_id=current_user.id)[-1].id,
+                'recipient_pronoun': recipient_pronoun
+            }
+            emit('get_latest_msg', latest_message)
+        else:
+            conversation_initialization_message = f'Hi, my name is \
+            {User.query.filter_by(id=recipient_id).first().username}! \
+            I\'ll be in touch with u soon(Hopefully)'
+            # create message
+            message = Message(sender_id=recipient_id,
+            recipient_id=current_user.id,
+            message=conversation_initialization_message, is_auto_generated=True)
+            # save to database
+            db.session.add(message)
+            db.session.commit()

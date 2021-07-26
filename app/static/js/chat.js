@@ -1,7 +1,6 @@
 document.onreadystatechange = function() {
   if (document.readyState === 'complete') {
     let socket = io()
-
     // send recipient id on connect
     socket.on('connect', function(msg) {
       socket.emit('send_latest_msg_to_client',
@@ -10,13 +9,27 @@ document.onreadystatechange = function() {
 
     // get sender msg on successfull send
     socket.on('get_sender_msg', function(msg) {
-      console.log(msg.message.message)
+      // console.log(msg.message.message)
     })
 
+    let all_visible_messages = document.getElementsByClassName('messages')
     // get the latest msg in database
     socket.on('get_latest_msg', function(msg) {
-      console.log(msg)
+      // console.log(msg)
+      // if (Number(msg.id) != Number(all_visible_messages[all_visible_messages.length-1]
+      // .getAttribute('MESSAGE_ID'))) {
+      //   let message_to_html = '<div class="recipient-pronoun">' +
+      //   msg.recipient_pronoun + '</div>' + '<div class="recipient-message">' +
+      //   msg.message + '</div>'
+      //
+      //   document.getElementById('scrollable-chat').innerHTML += message_to_html
+      //
+      //   chat_scrollable.scrollTo(0, chat_scrollable.scrollHeight)
+
+      console.log(msg.id, Number(all_visible_messages[all_visible_messages.length-1].getAttribute('MESSAGE_ID')))
+      // }
     })
+    // console.log(all_visible_messages[all_visible_messages.length-1])
 
     // to show the most recent messages and not the beginning of conversation
     chat_scrollable = document.getElementById('scrollable-chat')
@@ -36,6 +49,14 @@ document.onreadystatechange = function() {
             document.getElementById('text-to-send').value = ''
             // send to socket as well
             socket.emit('send_message', data)
+
+            let message_to_html = '<div class="sender-pronoun">You</div>' +
+            '<div class="sender-message">' + data.message + '</div>'
+
+            document.getElementById('scrollable-chat')
+            .innerHTML += message_to_html
+
+            chat_scrollable.scrollTo(0, chat_scrollable.scrollHeight)
           }
         }
       }
@@ -61,6 +82,14 @@ document.onreadystatechange = function() {
               document.getElementById('text-to-send').value = ''
               // send to socket as well
               socket.emit('send_message', data)
+
+              let message_to_html = '<div class="sender-pronoun">You</div>' +
+              '<div class="sender-message">' + data.message + '</div>'
+
+              document.getElementById('scrollable-chat')
+              .innerHTML += message_to_html
+
+              chat_scrollable.scrollTo(0, chat_scrollable.scrollHeight)
             }
           }
         }

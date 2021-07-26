@@ -12,8 +12,14 @@
 
   <div class="scrollable-chat" id="scrollable-chat">
     {% for message in messages %}
-    {% if message.sender_id == current_user.id %}
+    {% if message.sender_id == current_user.id and not
+    message.is_auto_generated %}
     <div class="sender-pronoun">You</div>
+    {% elif message.sender_id == current_user.id and
+    message.is_auto_generated %}
+    {% else %}
+    {% if message.is_auto_generated %}
+    <div class="recipient-pronoun">[AUTO-GENERATED]</div>
     {% else %}
     {% if recipient_gender == 'female' %}
     <div class="recipient-pronoun">Her</div>
@@ -21,11 +27,15 @@
     <div class="recipient-pronoun">Him</div>
     {% endif %}
     {% endif %}
+    {% endif %}
 
-    {% if message.sender_id == current_user.id %}
-    <div class="sender-message">{{ message.message }}</div>
-    {% else %}
-    <div class="recipient-message">{{ message.message }}</div>
+    {% if message.sender_id == current_user.id and not
+    message.is_auto_generated %}
+    <div class="sender-message messages"
+    MESSAGE_ID="{{ message.id }}">{{ message.message }}</div>
+    {% elif message.sender_id == recipient_id %}
+    <div class="recipient-message messages"
+    MESSAGE_ID="{{ message.id }}">{{ message.message }}</div>
     {% endif %}
 
     {% endfor %}

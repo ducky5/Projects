@@ -78,6 +78,7 @@ class Message(db.Model):
     sender_id = db.Column(db.Integer(), nullable=False)
     recipient_id = db.Column(db.Integer(), nullable=False)
     message = db.Column(db.String(), nullable=False)
+    is_auto_generated = db.Column(db.Boolean, default=False, nullable=False)
 
     @property
     def serialize(self):
@@ -85,5 +86,6 @@ class Message(db.Model):
             'id': self.id,
             'sender_id': self.sender_id,
             'recipient_id': self.recipient_id,
-            'message': self.message
+            'message': self.message,
+            'is_auto_generated': self.is_auto_generated
         }
