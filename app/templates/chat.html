@@ -44,5 +44,9 @@
 {% endblock %}
 
 {% block javascript %}
+<!-- socketio library -->
+<script src="{{ url_for('static', filename='js/external_libraries/socketio.js')
+}}"></script>
+<!-- chat.js -->
 <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
 {% endblock %}

@@ -195,6 +195,5 @@ def send_sender_msg_to_client(message):
 def send_latest_msg_to_client(recipient_id):
     while True:
         socketio.sleep(.5)
-        latest_message = Message.query.filter_by(sender_id=current_user.id, \
-        recipient_id=recipient_id)[-1].message
+        latest_message = Message.query.filter_by(sender_id=recipient_id, recipient_id=current_user.id)[-1].message
         emit('get_latest_msg', latest_message)
