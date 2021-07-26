@@ -194,7 +194,7 @@ def send_sender_msg_to_client(message):
 @socketio.event
 def send_latest_msg_to_client(recipient_id):
     while True:
-        socketio.sleep(.5)
+        # socketio.sleep()
         recipient_messages = Message.query.filter_by(sender_id=recipient_id,
         recipient_id=current_user.id).first()
         recipient_pronoun = ''
@@ -213,7 +213,14 @@ def send_latest_msg_to_client(recipient_id):
                 recipient_id=current_user.id)[-1].id,
                 'recipient_pronoun': recipient_pronoun
             }
-            emit('get_latest_msg', latest_message)
+            if not Message.query.filter_by(sender_id=recipient_id,
+            recipient_id=current_user.id)[-1].is_received:
+                emit('get_latest_msg', latest_message)
+                message = Message.query.filter_by(sender_id=recipient_id,
+                recipient_id=current_user.id)[-1]
+                message.is_received = True
+                db.session.add(message)
+                db.session.commit()
         else:
             conversation_initialization_message = f'Hi, my name is \
             {User.query.filter_by(id=recipient_id).first().username}! \

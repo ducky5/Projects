@@ -15,19 +15,15 @@ document.onreadystatechange = function() {
     let all_visible_messages = document.getElementsByClassName('messages')
     // get the latest msg in database
     socket.on('get_latest_msg', function(msg) {
-      // console.log(msg)
-      // if (Number(msg.id) != Number(all_visible_messages[all_visible_messages.length-1]
-      // .getAttribute('MESSAGE_ID'))) {
-      //   let message_to_html = '<div class="recipient-pronoun">' +
-      //   msg.recipient_pronoun + '</div>' + '<div class="recipient-message">' +
-      //   msg.message + '</div>'
-      //
-      //   document.getElementById('scrollable-chat').innerHTML += message_to_html
-      //
-      //   chat_scrollable.scrollTo(0, chat_scrollable.scrollHeight)
+        let message_to_html = '<div class="recipient-pronoun">' +
+        msg.recipient_pronoun + '</div>' + '<div class="recipient-message">' +
+        msg.message + '</div>'
 
-      console.log(msg.id, Number(all_visible_messages[all_visible_messages.length-1].getAttribute('MESSAGE_ID')))
-      // }
+        document.getElementById('scrollable-chat').innerHTML += message_to_html
+
+        chat_scrollable.scrollTo(0, chat_scrollable.scrollHeight)
+
+      // console.log(msg.id, Number(all_visible_messages[all_visible_messages.length-1].getAttribute('MESSAGE_ID')))
     })
     // console.log(all_visible_messages[all_visible_messages.length-1])
 
