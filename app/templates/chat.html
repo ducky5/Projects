@@ -11,36 +11,6 @@
   <div class="recipient-username">{{ recipient_username }}</div>
 
   <div class="scrollable-chat" id="scrollable-chat">
-    {##}
-    <!-- {% for message in messages %}
-    {% if message.sender_id == current_user.id and not
-    message.is_auto_generated %}
-    <div class="sender-pronoun">You</div>
-    {% elif message.sender_id == current_user.id and
-    message.is_auto_generated %}
-    {% else %}
-    {% if message.is_auto_generated %}
-    <div class="recipient-pronoun">[AUTO-GENERATED]</div>
-    {% else %}
-    {% if recipient_gender == 'female' %}
-    <div class="recipient-pronoun">Her</div>
-    {% else %}
-    <div class="recipient-pronoun">Him</div>
-    {% endif %}
-    {% endif %}
-    {% endif %}
-
-    {% if message.sender_id == current_user.id and not
-    message.is_auto_generated %}
-    <div class="sender-message messages"
-    MESSAGE_ID="{{ message.id }}">{{ message.message }}</div>
-    {% elif message.sender_id == recipient_id %}
-    <div class="recipient-message messages"
-    MESSAGE_ID="{{ message.id }}">{{ message.message }}</div>
-    {% endif %}
-
-    {% endfor %} --> {##}
-
     <div id="recipient_msg_from_websocket">
       {% if recipient_gender == 'female' and not
       latest_recipient_msg.is_auto_generated %}
@@ -63,6 +33,7 @@
 
   </div>
 
+  <!-- input area -->
   <div class="send-message">
     <textarea type="text" name="message" placeholder="type here..."
     id="text-to-send"></textarea>

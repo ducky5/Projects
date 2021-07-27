@@ -214,18 +214,6 @@ def save_message():
 
     return 'failure'
 
-# event triggered by client, purpose: receive sender msg, emit it back to client
-# @socketio.event
-# def send_sender_msg_to_client(message):
-#     emit_back_response = {
-#         'recipient': (User.query.filter_by(id=message['recipient_id']).first()
-#         .serialize),
-#         'message': Message.query.filter_by(sender_id=current_user.id, \
-#         recipient_id=message['recipient_id'])[-1].serialize
-#     }
-#
-#     emit('get_sender_msg', emit_back_response)
-
 # event triggered by client upon connection, purpose: get latest message from
 # database, emit it back to client
 @socketio.event
@@ -241,8 +229,6 @@ def send_latest_msg_to_client(recipient_id):
             recipient_pronoun = 'Him'
 
         if recipient_messages is not None:
-            # latest_message = Message.query.filter_by(sender_id=recipient_id,
-            # recipient_id=current_user.id)[-1].message
             try:
                 latest_message = {
                     'message': (Message.query.filter_by(sender_id=recipient_id,
