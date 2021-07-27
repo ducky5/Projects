@@ -143,6 +143,41 @@ def chat_page(recipient_id):
         return 'failure'
 
     recipient = User.query.filter_by(id=recipient_id).first()
+    try:
+        latest_current_user_msg = Message.query.filter_by(
+        sender_id=current_user.id, recipient_id=recipient_id)[-1]
+    except IndexError:
+        conversation_initialization_message = f'Hi, my name is \
+        {User.query.filter_by(id=current_user.id).first().username}! \
+        I\'ll be in touch with u soon(Hopefully)'
+
+        latest_current_user_msg = Message(sender_id=current_user.id,
+        recipient_id=recipient_id, is_auto_generated=True,
+        message=conversation_initialization_message)
+        db.session.add(latest_current_user_msg)
+        db.session.commit()
+
+        latest_current_user_msg = Message.query.filter_by(
+        sender_id=current_user.id, recipient_id=recipient_id)[-1]
+
+
+
+    try:
+        latest_recipient_msg = Message.query.filter_by(sender_id=recipient_id,
+        recipient_id=current_user.id)[-1]
+    except IndexError:
+        conversation_initialization_message = f'Hi, my name is \
+        {User.query.filter_by(id=recipient_id).first().username}! \
+        I\'ll be in touch with u soon(Hopefully)'
+
+        latest_recipient_msg = Message(sender_id=recipient_id,
+        recipient_id=current_user.id, is_auto_generated=True,
+        message=conversation_initialization_message)
+        db.session.add(latest_recipient_msg)
+        db.session.commit()
+
+        latest_recipient_msg = Message.query.filter_by(sender_id=recipient_id,
+        recipient_id=current_user.id)[-1]
 
     if recipient is not None:
         messages = []
@@ -156,7 +191,9 @@ def chat_page(recipient_id):
 
         return render_template('chat.html', messages=messages,
         recipient_username=recipient.username,
-        recipient_gender=recipient.gender, recipient_id=recipient_id)
+        recipient_gender=recipient.gender, recipient_id=recipient_id,
+        latest_current_user_msg=latest_current_user_msg,
+        latest_recipient_msg=latest_recipient_msg)
 
     return 'failure'
 
@@ -178,16 +215,16 @@ def save_message():
     return 'failure'
 
 # event triggered by client, purpose: receive sender msg, emit it back to client
-@socketio.event
-def send_sender_msg_to_client(message):
-    emit_back_response = {
-        'recipient': (User.query.filter_by(id=message['recipient_id']).first()
-        .serialize),
-        'message': Message.query.filter_by(sender_id=current_user.id, \
-        recipient_id=message['recipient_id'])[-1].serialize
-    }
-
-    emit('get_sender_msg', emit_back_response)
+# @socketio.event
+# def send_sender_msg_to_client(message):
+#     emit_back_response = {
+#         'recipient': (User.query.filter_by(id=message['recipient_id']).first()
+#         .serialize),
+#         'message': Message.query.filter_by(sender_id=current_user.id, \
+#         recipient_id=message['recipient_id'])[-1].serialize
+#     }
+#
+#     emit('get_sender_msg', emit_back_response)
 
 # event triggered by client upon connection, purpose: get latest message from
 # database, emit it back to client
@@ -207,25 +244,14 @@ def send_latest_msg_to_client(recipient_id):
             # latest_message = Message.query.filter_by(sender_id=recipient_id,
             # recipient_id=current_user.id)[-1].message
             latest_message = {
-                'message': Message.query.filter_by(sender_id=recipient_id,
-                recipient_id=current_user.id)[-1].message,
+                'message': (Message.query.filter_by(sender_id=recipient_id,
+                recipient_id=current_user.id, is_auto_generated=False)[-1]
+                .message),
                 'id': Message.query.filter_by(sender_id=recipient_id,
-                recipient_id=current_user.id)[-1].id,
-                'recipient_pronoun': recipient_pronoun,
-                'emit_finished': False
+                recipient_id=current_user.id, is_auto_generated=False)[-1].id,
+                'recipient_pronoun': recipient_pronoun
             }
-            if not Message.query.filter_by(sender_id=recipient_id,
-            recipient_id=current_user.id)[-1].is_received:
-                latest_message['emit_finished'] = True
-                # latest_message['emit_finished'] = emit_finished
-                emit('get_latest_msg', latest_message)
-                message = Message.query.filter_by(sender_id=recipient_id,
-                recipient_id=current_user.id)[-1]
-                message.is_received = True
-                db.session.add(message)
-                db.session.commit()
-            else:
-                emit('get_latest_msg', latest_message)
+            emit('get_latest_msg', latest_message)
         else:
             conversation_initialization_message = f'Hi, my name is \
             {User.query.filter_by(id=recipient_id).first().username}! \
@@ -237,3 +263,11 @@ def send_latest_msg_to_client(recipient_id):
             # save to database
             db.session.add(message)
             db.session.commit()
+
+            latest_message = {
+                'message': message.message,
+                'id': message.id,
+                'recipient_pronoun': '[AUTO-GENERATED]'
+            }
+
+            emit('get_latest_msg', latest_message)

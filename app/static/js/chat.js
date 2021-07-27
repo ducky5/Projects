@@ -12,21 +12,22 @@ document.onreadystatechange = function() {
     //   // console.log(msg.message.message)
     // })
 
-    let all_visible_messages = document.getElementsByClassName('messages')
+    // let all_visible_messages = document.getElementsByClassName('messages')
     // get the latest msg in database
     socket.on('get_latest_msg', function(msg) {
-      if (msg.emit_finished) {
-        let message_to_html = '<div class="recipient-pronoun">' +
-        msg.recipient_pronoun + '</div>' + '<div class="recipient-message">' +
-        msg.message + '</div>'
+      // if (msg.emit_finished) {
+      let message_to_html = '<div class="recipient-pronoun">' +
+      msg.recipient_pronoun + '</div>' + '<div class="recipient-message">' +
+      msg.message + '</div>'
 
-        document.getElementById('scrollable-chat').innerHTML += message_to_html
+      document.getElementById('recipient_msg_from_websocket').innerHTML
+      = message_to_html
 
-        chat_scrollable.scrollTo(0, chat_scrollable.scrollHeight)
-
-        document.getElementById('text-to-send').disabled = false
-        document.getElementById('text-to-send').focus()
-      }
+        // chat_scrollable.scrollTo(0, chat_scrollable.scrollHeight)
+        //
+        // document.getElementById('text-to-send').disabled = false
+        // document.getElementById('text-to-send').focus()
+      // }
       // console.log(msg.id, Number(all_visible_messages[all_visible_messages.length-1].getAttribute('MESSAGE_ID')))
     })
     // console.log(all_visible_messages[all_visible_messages.length-1])
@@ -48,17 +49,17 @@ document.onreadystatechange = function() {
           if (this.responseText == 'success') {
             document.getElementById('text-to-send').value = ''
             // send to socket as well
-            socket.emit('send_message', data)
+            // socket.emit('send_message', data)
 
             let message_to_html = '<div class="sender-pronoun">You</div>' +
             '<div class="sender-message">' + data.message + '</div>'
 
-            document.getElementById('scrollable-chat')
-            .innerHTML += message_to_html
+            document.getElementById('current_user_msg_from_client_js')
+            .innerHTML = message_to_html
 
-            chat_scrollable.scrollTo(0, chat_scrollable.scrollHeight)
+            // chat_scrollable.scrollTo(0, chat_scrollable.scrollHeight)
 
-            document.getElementById('text-to-send').disabled = true
+            // document.getElementById('text-to-send').disabled = true
           }
         }
       }
@@ -83,17 +84,17 @@ document.onreadystatechange = function() {
             if (this.responseText == 'success') {
               document.getElementById('text-to-send').value = ''
               // send to socket as well
-              socket.emit('send_message', data)
+              // socket.emit('send_message', data)
 
               let message_to_html = '<div class="sender-pronoun">You</div>' +
               '<div class="sender-message">' + data.message + '</div>'
 
-              document.getElementById('scrollable-chat')
-              .innerHTML += message_to_html
+              document.getElementById('current_user_msg_from_client_js')
+              .innerHTML = message_to_html
 
-              chat_scrollable.scrollTo(0, chat_scrollable.scrollHeight)
+              // chat_scrollable.scrollTo(0, chat_scrollable.scrollHeight)
 
-              document.getElementById('text-to-send').disabled = true
+              // document.getElementById('text-to-send').disabled = true
             }
           }
         }

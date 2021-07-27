@@ -11,7 +11,8 @@
   <div class="recipient-username">{{ recipient_username }}</div>
 
   <div class="scrollable-chat" id="scrollable-chat">
-    {% for message in messages %}
+    {##}
+    <!-- {% for message in messages %}
     {% if message.sender_id == current_user.id and not
     message.is_auto_generated %}
     <div class="sender-pronoun">You</div>
@@ -38,7 +39,27 @@
     MESSAGE_ID="{{ message.id }}">{{ message.message }}</div>
     {% endif %}
 
-    {% endfor %}
+    {% endfor %} --> {##}
+
+    <div id="recipient_msg_from_websocket">
+      {% if recipient_gender == 'female' and not
+      latest_recipient_msg.is_auto_generated %}
+      <div class="recipient-pronoun">Her</div>
+      {% elif recipient_gender == 'male' and not
+      latest_recipient_msg.is_auto_generated %}
+      <div class="recipient-pronoun">Him</div>
+      {% elif latest_recipient_msg.is_auto_generated %}
+      <div class="recipient-pronoun">[AUTO-GENERATED]</div>
+      {% endif %}
+      <div class="recipient-message">{{ latest_recipient_msg.message }}</div>
+    </div>
+
+    <div id="current_user_msg_from_client_js">
+      {% if not latest_current_user_msg.is_auto_generated %}
+      <div class="sender-pronoun">You</div>
+      <div class="sender-message">{{ latest_current_user_msg.message }}</div>
+      {% endif %}
+    </div>
 
   </div>
 
