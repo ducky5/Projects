@@ -49,7 +49,7 @@
       USER_ID="{{ user.id }}">
         <i class="fas fa-plus-circle"></i>
       </button>
-      <a href="{{ url_for('chat_page', recipient_id=user.id) }}/">
+      <a href="{{ url_for('chat_page', recipient_id=user.id) }}/" title='chat'>
         <button type="button" name="button" class="start-conversation">
           <i class="fas fa-comments"></i>
         </button>
