@@ -21,18 +21,19 @@ ul {
   border: 1px solid rgba(0, 0, 0, .09);
   border-bottom: 0;
 }
-.action-buttons > button {
+.action-buttons button {
   border: 0;
   background: transparent;
   font-size: 30px;
 }
-.action-buttons > .add {
+.action-buttons > .add, .action-buttons .start-conversation {
   color: rgb(39, 219, 26);
-  order: 2;
 }
 .action-buttons > .unadd {
   color: rgb(232, 80, 53);
-  order: 1;
+}
+.action-buttons button {
+  cursor: pointer;
 }
 li {
   border: 1px solid rgba(0, 0, 0, .09);
@@ -131,9 +132,6 @@ button[name$="male"], button[name="older-than-me"] {
   }
   .list-item-wrapper:hover > .action-buttons {
     opacity: 1;
-  }
-  .action-buttons > button {
-    cursor: pointer;
   }
   .filter-by {
     width: 90%;

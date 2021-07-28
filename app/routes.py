@@ -136,7 +136,7 @@ def unadd_assumption():
 
     return 'failure'
 
-@app.route('/chat/<int:recipient_id>')
+@app.route('/chat/<int:recipient_id>/')
 @login_required
 def chat_page(recipient_id):
     if recipient_id == current_user.id or User.query.filter_by(id=recipient_id)\

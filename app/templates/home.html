@@ -41,14 +41,19 @@
   {% if user.age > current_user.age %}older-than-me{% endif %}
   {% if user in current_user.added_users %}added{% endif %}">
     <span class="action-buttons">
-      <button type="button" name="button" class="unadd" title="unadd"
+      <button type="button" name="unadd_user" class="unadd" title="unadd"
       USER_ID="{{ user.id }}">
         <i class="fas fa-minus-circle"></i>
       </button>
-      <button type="button" name="button" class="add" title="add"
+      <button type="button" name="add_user" class="add" title="add"
       USER_ID="{{ user.id }}">
         <i class="fas fa-plus-circle"></i>
       </button>
+      <a href="{{ url_for('chat_page', recipient_id=user.id) }}/">
+        <button type="button" name="button" class="start-conversation">
+          <i class="fas fa-comments"></i>
+        </button>
+      </a>
     </span>
     <li>
       <span class="username">{{ user.username }}</span>
