@@ -80,6 +80,9 @@ button[name="send"] {
   height: 160px;
   padding: 10px;
 }
+.scrollable-chat::-webkit-scrollbar { /* make scrollbar invisible */
+  width: 0;
+}
 /* from laptops and small screens up */
 @media (min-width: 769px) {
   .chat-container {
