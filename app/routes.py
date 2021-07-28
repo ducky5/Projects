@@ -136,10 +136,11 @@ def unadd_assumption():
 
     return 'failure'
 
-@app.route('/chat/user/<int:recipient_id>')
+@app.route('/chat/<int:recipient_id>')
 @login_required
 def chat_page(recipient_id):
-    if recipient_id == current_user.id:
+    if recipient_id == current_user.id or User.query.filter_by(id=recipient_id)\
+    .first() is None:
         return 'failure'
 
     recipient = User.query.filter_by(id=recipient_id).first()
@@ -160,8 +161,6 @@ def chat_page(recipient_id):
         latest_current_user_msg = Message.query.filter_by(
         sender_id=current_user.id, recipient_id=recipient_id)[-1]
 
-
-
     try:
         latest_recipient_msg = Message.query.filter_by(sender_id=recipient_id,
         recipient_id=current_user.id)[-1]
@@ -179,23 +178,10 @@ def chat_page(recipient_id):
         latest_recipient_msg = Message.query.filter_by(sender_id=recipient_id,
         recipient_id=current_user.id)[-1]
 
-    if recipient is not None:
-        messages = []
-        # search the entire Message table for messages with either of the users
-        # as sender and either as recipient (algorithm is linear search :/)
-        for message in Message.query.all():
-            if ((message.sender_id == recipient.id or message.sender_id ==
-            current_user.id) and (message.recipient_id == recipient.id or
-            message.recipient_id == current_user.id)):
-                messages.append(message)
-
-        return render_template('chat.html', messages=messages,
-        recipient_username=recipient.username,
-        recipient_gender=recipient.gender, recipient_id=recipient_id,
-        latest_current_user_msg=latest_current_user_msg,
-        latest_recipient_msg=latest_recipient_msg)
-
-    return 'failure'
+    return render_template('chat.html', recipient_username=recipient.username,
+    recipient_gender=recipient.gender, recipient_id=recipient_id,
+    latest_current_user_msg=latest_current_user_msg,
+    latest_recipient_msg=latest_recipient_msg)
 
 @app.route('/save-message', methods=['POST'])
 @login_required
@@ -219,10 +205,9 @@ def save_message():
 @socketio.event
 def send_latest_msg_to_client(recipient_id):
     while True:
-        socketio.sleep(.5)
+        socketio.sleep(.1)
         recipient_messages = Message.query.filter_by(sender_id=recipient_id,
         recipient_id=current_user.id).first()
-        recipient_pronoun = ''
         if User.query.filter_by(id=recipient_id).first().gender == 'female':
             recipient_pronoun = 'Her'
         else:
