@@ -15,15 +15,12 @@ label {
 }
 input[type="submit"] {
   padding: 10px;
-  /* background: rgb(0, 4, 56); */
   color: rgb(247, 247, 247);
   font-family: roboto-regular, sans-serif;
   font-size: 20px;
   border: 0;
   border-radius: 3px;
   background: rgba(0, 4, 56, .9);
-  /* margin-top: 24px; */
-
 }
 input:not([type="submit"]) {
   padding: 10px;
@@ -36,9 +33,7 @@ input:not([type="submit"]):focus {
   border: 1px solid transparent;
 }
 form > span {
-  /* border: 1px solid rgba(0, 0, 0, .09); */
   padding: 10px;
-  /* margin-top: 5px; */
   text-align: center;
 }
 form > span > a[href^="/register"] {

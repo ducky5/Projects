@@ -31,6 +31,10 @@ href="{{ url_for('static', filename='css/assumptions.css') }}">
 </ul>
 {% endblock %}
 
+{% block footer %}
+Logged in as {{ current_user.username }}
+{% endblock %}
+
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/assumptions.js') }}"></script>
 {% endblock %}

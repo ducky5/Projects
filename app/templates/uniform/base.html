@@ -51,7 +51,10 @@
       {% block content %}{% endblock %}
     </main>
     <!-- footer -->
-    <footer></footer>
+    <footer>
+      <!-- child template's footer -->
+      {% block footer %}{% endblock %}
+    </footer>
     <!-- javascript -->
     {% block javascript %}{% endblock %}
   </body>

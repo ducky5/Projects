@@ -70,6 +70,10 @@
 </ul>
 {% endblock %}
 
+{% block footer %}
+Logged in as {{ current_user.username }}
+{% endblock %}
+
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/home.js') }}"></script>
 {% endblock %}

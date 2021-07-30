@@ -61,6 +61,21 @@ header, button {
   -ms-user-select: none;
   user-select: none;
 }
+main {
+  margin-bottom: 50px;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 20px;
+  background: rgba(240, 240, 240);
+  color: rgb(0, 4, 56);
+  font-family: roboto-regular, sans-serif;
+  /* font-size: 30px; */
+}
+/* from laptops and small screens up */
 @media (min-width: 769px) {
   header {
     flex-direction: row;
