@@ -35,7 +35,6 @@
 <!-- lister -->
 <ul>
   {% for user in users %}
-  {% if user != current_user %}
   <div class="list-item-wrapper
   {% if user.age == current_user.age %}my-age{% endif %}
   {% if user.age > current_user.age %}older-than-me{% endif %}
@@ -65,7 +64,6 @@
       </span>
     </li>
   </div>
-  {% endif %}
   {% endfor %}
 </ul>
 {% endblock %}

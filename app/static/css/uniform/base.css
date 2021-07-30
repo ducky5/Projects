@@ -73,7 +73,7 @@ footer {
   background: rgba(240, 240, 240);
   color: rgb(0, 4, 56);
   font-family: roboto-regular, sans-serif;
-  /* font-size: 30px; */
+  text-align: center;
 }
 /* from laptops and small screens up */
 @media (min-width: 769px) {
@@ -107,5 +107,8 @@ footer {
     position: sticky;
     top: 0;
     z-index: 1;
+  }
+  footer {
+    text-align: left;
   }
 }

@@ -5,19 +5,56 @@ from flask_socketio import emit
 from app.models import Assumption, User, Message
 from app.forms import RegisterForm, LoginForm
 from app.helpers import logged_out, calculate_compatibility
+from random import randint
 import user_loader
 
 @app.route('/')
 @login_required
 def home_page():
-    users = User.query.all()
+    # get all added users
+    added_users = []
+    for user in User.query.all():
+        if user in current_user.added_users:
+            added_users.append(user)
+    # random list of users (may or may not include added_users cuz random)
+    try:
+        random_list = db.session.query(User).filter(User.id!=current_user.id,
+        User.id>=randint(1, len(User.query.all()))).limit(100)
+    except ValueError:
+        random_list = []
+    # makes sure added_users in random_list are not passed to users list
+    users = []
+    for user in random_list:
+        if user not in current_user.added_users:
+            users.append(user)
+    # joins users with added_users successfully preventing any duplications
+    users = users + added_users
     return render_template('home.html', users=users,
     calculate_compatibility=calculate_compatibility)
 
 @app.route('/settings')
 @login_required
 def assumptions_page():
-    assumptions = Assumption.query.all()
+    # get all added assumptions
+    added_assumptions = []
+    for assumption in Assumption.query.all():
+        if assumption in current_user.assumptions:
+            added_assumptions.append(assumption)
+    # random list of assumptions (may or may not include added ones cuz random)
+    try:
+        random_list = db.session.query(Assumption).filter(Assumption.id>=randint(1,
+        len(Assumption.query.all()))).limit(100)
+    except ValueError:
+        random_list = []
+    # makes sure added_assumptions in random_list are not passed to assumptions
+    # list
+    assumptions = []
+    for assumption in random_list:
+        if assumption not in current_user.assumptions:
+            assumptions.append(assumption)
+    # joins assumptions with added_assumptions successfully preventing any
+    # duplications
+    assumptions = added_assumptions + assumptions
     return render_template('assumptions.html', assumptions=assumptions)
 
 @app.route('/register', methods=['GET', 'POST'])
