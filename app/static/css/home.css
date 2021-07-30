@@ -51,7 +51,7 @@ li {
   color: rgb(97, 184, 255);
   font-size: .44em;
   align-self: center;
-  font-family: roboto-bold;
+  font-family: roboto-bold, sans-serif;
   /* disables text selection */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -61,7 +61,7 @@ li {
   user-select: none;
 }
 .username {
-  font-family: roboto-regular;
+  font-family: roboto-regular, sans-serif;
   align-self: center;
   padding: 3px;
   color: rgb(0, 4, 56);
@@ -74,7 +74,7 @@ li {
 .filter-by {
   width: 70%;
   margin: 30px auto 0 auto;
-  font-family: roboto-regular;
+  font-family: roboto-regular, sans-serif;
   font-size: 20px;
   color: rgb(0, 4, 56);
   text-align: center;
@@ -91,7 +91,7 @@ li {
   border-radius: 2px;
   background: rgb(97, 184, 255);
   color: rgb(247, 247, 247);
-  font-family: roboto-regular;
+  font-family: roboto-regular, sans-serif;
   display: flex;
   align-items: center;
   justify-content: space-between;

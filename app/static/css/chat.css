@@ -6,7 +6,7 @@
   width: 90%;
 }
 .recipient-username {
-  font-family: roboto-regular;
+  font-family: roboto-regular, sans-serif;
   font-size: 30px;
   color: rgb(0, 4, 56);
   text-align: center;
@@ -14,24 +14,24 @@
   padding: 10px;
 }
 .recipient-pronoun, .recipient-message {
-  font-family: roboto-bold;
+  font-family: roboto-bold, sans-serif;
   font-size: 20px;
   color: rgb(0, 4, 56);
   padding: 10px;
 }
 .recipient-message {
-  font-family: roboto-light;
+  font-family: roboto-light, sans-serif;
   margin-left: 30px;
 }
 .sender-pronoun, .sender-message {
-  font-family: roboto-bold;
+  font-family: roboto-bold, sans-serif;
   font-size: 20px;
   color: rgb(0, 4, 56);
   text-align: right;
   padding: 10px;
 }
 .sender-message {
-  font-family: roboto-light;
+  font-family: roboto-light, sans-serif;
   margin-right: 30px;
 }
 .sender-message, .recipient-message {
@@ -55,7 +55,7 @@
 textarea[name="message"] {
   padding: 3px 10px 0 10px;
   font-size: 20px;
-  font-family: roboto-regular;
+  font-family: roboto-regular, sans-serif;
   color: rgb(0, 4, 56);
   resize: none;
   flex-basis: 80%;

@@ -4,7 +4,7 @@ form {
   background: rgb(247, 247, 247);
   width: 90%;
   margin: 30px auto;
-  font-family: roboto-regular;
+  font-family: roboto-regular, sans-serif;
   color: rgb(0, 4, 56);
   padding: 15px;
   border: 1px solid rgba(0, 0, 0, .09);
@@ -17,7 +17,7 @@ input[type="submit"] {
   padding: 10px;
   /* background: rgb(0, 4, 56); */
   color: rgb(247, 247, 247);
-  font-family: roboto-regular;
+  font-family: roboto-regular, sans-serif;
   font-size: 20px;
   border: 0;
   border-radius: 3px;

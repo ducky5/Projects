@@ -31,7 +31,7 @@ header {
 header > span {
   font-size: 70px;
   margin: 30px 0 30px 0;
-  font-family: brand-font;
+  font-family: brand-font, sans-serif;
 }
 header abbr {
   text-decoration: none;
