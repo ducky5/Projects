@@ -11,24 +11,7 @@ import user_loader
 @app.route('/')
 @login_required
 def home_page():
-    # get all added users
-    added_users = []
-    for user in User.query.all():
-        if user in current_user.added_users:
-            added_users.append(user)
-    # random list of users (may or may not include added_users cuz random)
-    try:
-        random_list = db.session.query(User).filter(User.id!=current_user.id,
-        User.id>=randint(1, len(User.query.all()))).limit(100)
-    except ValueError:
-        random_list = []
-    # makes sure added_users in random_list are not passed to users list
-    users = []
-    for user in random_list:
-        if user not in current_user.added_users:
-            users.append(user)
-    # joins users with added_users successfully preventing any duplications
-    users = users + added_users
+    users = db.session.query(User).filter(User.id!=current_user.id).limit(25)
     return render_template('home.html', users=users,
     calculate_compatibility=calculate_compatibility)
 
@@ -290,3 +273,17 @@ def send_latest_msg_to_client(recipient_id):
             }
 
             emit('get_latest_msg', latest_message)
+
+@app.route('/load_more', methods=['POST'])
+@login_required
+def load_more():
+    id_of_latest_listing = request.json['id_of_latest_listing']
+    load = db.session.query(User).filter(User.id!=current_user.id,
+    User.id>id_of_latest_listing).limit(25)
+    json_load = {'load': []}
+    for user in load:
+        if user not in current_user.added_users:
+            json_load['load'].append([user.serialize,
+            calculate_compatibility(user.id)])
+
+    return json_load

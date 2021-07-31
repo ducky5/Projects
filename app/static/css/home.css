@@ -115,6 +115,16 @@ button[name$="male"], button[name="older-than-me"] {
 .hide {
   display: none;
 }
+button#load_more {
+  padding: 8px;
+  color: rgb(0, 4, 56);
+  border: 1px solid rgba(0, 0, 0, .09);
+  font-family: roboto-regular;
+  font-size: 20px;
+  display: block;
+  margin: 0 auto 70px auto;
+  cursor: pointer;
+}
 /* from laptops and small screens up */
 @media (min-width: 769px) {
   ul {
