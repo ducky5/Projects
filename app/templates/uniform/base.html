@@ -7,9 +7,11 @@
     <!-- base.css file(for this file which is the parent) -->
     <link rel="stylesheet"
     href="{{ url_for('static', filename='css/uniform/minified/base.css') }}">
+    {% if current_user.is_authenticated %}
     <!-- icons -->
     <link rel="stylesheet"
-    href="{{ url_for('static', filename='icons/css/all_backup.css') }}">
+    href="{{ url_for('static', filename='icons/css/minified/all.css') }}">
+    {% endif %}
     <!-- child template's css files -->
     {% block css_files %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
