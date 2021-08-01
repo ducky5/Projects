@@ -2,7 +2,7 @@
 
 {% block css_files %}
 <link rel="stylesheet"
-href="{{ url_for('static', filename='css/assumptions.css') }}">
+href="{{ url_for('static', filename='css/minified/assumptions.css') }}">
 {% endblock %}
 
 {% block title %}Assumptions{% endblock %}
@@ -36,5 +36,6 @@ Logged in as {{ current_user.username }}
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('static', filename='js/assumptions.js') }}"></script>
+<script src="{{ url_for('static',
+filename='js/minified/assumptions.js') }}"></script>
 {% endblock %}

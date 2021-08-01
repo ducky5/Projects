@@ -1,7 +1,9 @@
 {% extends 'uniform/base.html' %}
 
 {% block css_files %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<!-- main file -->
+<link rel="stylesheet" href="{{ url_for('static',
+filename='css/minified/home.css') }}">
 {% endblock %}
 
 {% block title %}Home{% endblock %}
@@ -21,7 +23,8 @@
       USER_ID="{{ user.id }}">
         <i class="fas fa-plus-circle"></i>
       </button>
-      <!-- <a href="{{ url_for('chat_page', recipient_id=user.id) }}/" title='chat'>
+      <!-- <a href="{{ url_for('chat_page', recipient_id=user.id) }}/"
+      title='chat'>
         <button type="button" name="button" class="start-conversation">
           <i class="fas fa-comments"></i>
         </button>
@@ -32,7 +35,8 @@
       <span class="meta-data">
         <span class="gender {{ user.gender }}">
         [<i class="fas fa-{{ user.gender }}" name="gender"></i>]</span>
-        <span class="compatibility">[{{ calculate_compatibility(user.id) }}%]</span>
+        <span class="compatibility">[{{ calculate_compatibility(user.id) }}%]
+        </span>
         <span class="age">[{{ user.age }}]</span>
       </span>
     </li>
@@ -49,5 +53,5 @@ Logged in as {{ current_user.username }}
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+<script src="{{ url_for('static', filename='js/minified/home.js') }}"></script>
 {% endblock %}

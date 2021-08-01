@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- base.css file(for this file which is the parent) -->
     <link rel="stylesheet"
-    href="{{ url_for('static', filename='css/uniform/base.css') }}">
+    href="{{ url_for('static', filename='css/uniform/minified/base.css') }}">
     <!-- icons -->
     <link rel="stylesheet"
-    href="{{ url_for('static', filename='icons/css/all.css') }}">
+    href="{{ url_for('static', filename='icons/css/all_backup.css') }}">
     <!-- child template's css files -->
     {% block css_files %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
@@ -39,7 +39,8 @@
             <i class="fas fa-comment-alt"></i>
           </span>
         </a>
-        <a href="{{ url_for('logout_page') }}" title="logout"><span class="logout">
+        <a href="{{ url_for('logout_page') }}" title="logout">
+          <span class="logout">
           <i class="fas fa-sign-out-alt"></i>
         </span></a>
         {% endif %}

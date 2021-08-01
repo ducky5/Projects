@@ -1,7 +1,8 @@
 {% extends 'uniform/base.html' %}
 
 {% block css_files %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',
+filename='css/minified/chat.css') }}">
 {% endblock %}
 
 {% block title %}Chat{% endblock %}
@@ -47,8 +48,9 @@
 
 {% block javascript %}
 <!-- socketio library -->
-<script src="{{ url_for('static', filename='js/external_libraries/socketio.js')
+<script src="{{ url_for('static',
+filename='js/external_libraries/minified/socketio.js')
 }}"></script>
 <!-- chat.js -->
-<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+<script src="{{ url_for('static', filename='js/minified/chat.js') }}"></script>
 {% endblock %}
