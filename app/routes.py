@@ -11,7 +11,7 @@ import user_loader
 @app.route('/')
 @login_required
 def home_page():
-    users = db.session.query(User).filter(User.id!=current_user.id).limit(25)
+    users = User.query.limit(25)
     return render_template('home.html', users=users,
     calculate_compatibility=calculate_compatibility)
 

@@ -4,6 +4,18 @@
     <meta charset="utf-8">
     <!-- responsiveness meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- preloading -->
+    <link rel="preload" href="{{ url_for('static',
+    filename='fonts/brand_font/PressStart2P-Regular.ttf') }}" as="font"
+    type="font/ttf" crossorigin>
+    <link rel="preload" href="{{ url_for('static',
+    filename='fonts/roboto_condensed/RobotoCondensed-Bold.ttf') }}" as="font"
+    crossorigin>
+    <link rel="preload" href="{{ url_for('static',
+    filename='icons/webfonts/fa-solid-900.woff2') }}" as="font" crossorigin>
+    <link rel="preload" href="{{ url_for('static',
+    filename='fonts/roboto_condensed/RobotoCondensed-Regular.ttf') }}"
+    as="font" crossorigin>
     <!-- base.css file(for this file which is the parent) -->
     <link rel="stylesheet"
     href="{{ url_for('static', filename='css/uniform/minified/base.css') }}">

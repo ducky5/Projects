@@ -12,7 +12,7 @@ filename='css/minified/home.css') }}">
 <!-- lister -->
 <ul id="list_of_users">
   {% for user in users %}
-  {% if user not in current_user.added_users %}
+  {% if user not in current_user.added_users and user.id != current_user.id %}
   <div class="list-item-wrapper" USER_ID="{{ user.id }}">
     <span class="action-buttons">
       <!-- <button type="button" name="unadd_user" class="unadd" title="unadd"

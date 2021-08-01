@@ -1,18 +1,22 @@
 @font-face {
   src: url('../../fonts/brand_font/PressStart2P-Regular.ttf');
   font-family: brand-font;
+  font-display: swap;
 }
 @font-face {
   src: url('../../fonts/roboto_condensed/RobotoCondensed-Bold.ttf');
   font-family: roboto-bold;
+  font-display: swap;
 }
 @font-face {
   src: url('../../fonts/roboto_condensed/RobotoCondensed-Regular.ttf');
   font-family: roboto-regular;
+  font-display: swap;
 }
 @font-face {
   src: url('../../fonts/roboto_condensed/RobotoCondensed-Light.ttf');
   font-family: roboto-light;
+  font-display: swap;
 }
 * {
   box-sizing: border-box;
