@@ -56,5 +56,5 @@ Logged in as {{ current_user.username }}
 {% endblock %}
 
 {% block javascript %}
-
+<script src="{{ url_for('static', filename='js/messages.js') }}"></script>
 {% endblock %}

@@ -73,9 +73,14 @@ def add_user():
 
         if (user_to_add not in current_user.added_users and user_to_add is not
         None):
+            # add user to current_user
             current_user.added_users.append(user_to_add)
             db.session.add(current_user)
+            # add current_user to user
+            user_to_add.added_users.append(current_user)
+            # save
             db.session.commit()
+
 
             return 'success'
 
