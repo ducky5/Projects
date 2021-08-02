@@ -8,16 +8,16 @@ href="{{ url_for('static', filename='css/minified/assumptions.css') }}">
 {% block title %}Assumptions{% endblock %}
 
 {% block content %}
-<ul>
+<ul id="list_of_assumptions">
   {% for assumption in assumptions %}
   <div class="list-item-wrapper  {% if assumption in current_user.assumptions %}
-  added{% endif %}">
+  added{% endif %}" ASSUMPTION_ID="{{ assumption.id }}">
     <span class="action-buttons">
-      <button type="button" name="button" class="unadd" title="unadd"
+      <button type="button" name="unadd_assumption" class="unadd" title="unadd"
       ASSUMPTION_ID="{{ assumption.id }}">
         <i class="fas fa-minus-circle"></i>
       </button>
-      <button type="button" name="button" class="add" title="add"
+      <button type="button" name="add_assumption" class="add" title="add"
       ASSUMPTION_ID="{{ assumption.id }}">
         <i class="fas fa-plus-circle"></i>
       </button>
@@ -29,6 +29,8 @@ href="{{ url_for('static', filename='css/minified/assumptions.css') }}">
   </div>
   {% endfor %}
 </ul>
+<!-- load more button -->
+<button type="button" name="load more" id="load_more">Load more</button>
 {% endblock %}
 
 {% block footer %}

@@ -5,7 +5,6 @@ from flask_socketio import emit
 from app.models import Assumption, User, Message
 from app.forms import RegisterForm, LoginForm
 from app.helpers import logged_out, calculate_compatibility
-from random import randint
 import user_loader
 
 @app.route('/')
@@ -18,26 +17,7 @@ def home_page():
 @app.route('/settings')
 @login_required
 def assumptions_page():
-    # get all added assumptions
-    added_assumptions = []
-    for assumption in Assumption.query.all():
-        if assumption in current_user.assumptions:
-            added_assumptions.append(assumption)
-    # random list of assumptions (may or may not include added ones cuz random)
-    try:
-        random_list = db.session.query(Assumption).filter(Assumption.id>=randint(1,
-        len(Assumption.query.all()))).limit(100)
-    except ValueError:
-        random_list = []
-    # makes sure added_assumptions in random_list are not passed to assumptions
-    # list
-    assumptions = []
-    for assumption in random_list:
-        if assumption not in current_user.assumptions:
-            assumptions.append(assumption)
-    # joins assumptions with added_assumptions successfully preventing any
-    # duplications
-    assumptions = added_assumptions + assumptions
+    assumptions = Assumption.query.limit(25)
     return render_template('assumptions.html', assumptions=assumptions)
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -285,5 +265,20 @@ def load_more():
         if user not in current_user.added_users:
             json_load['load'].append([user.serialize,
             calculate_compatibility(user.id)])
+
+    return json_load
+
+@app.route('/load_more_assumptions', methods=['POST'])
+@login_required
+def load_more_assumptions():
+    id_of_latest_listing = request.json['id_of_latest_listing']
+    load = db.session.query(Assumption).filter(
+    Assumption.id>id_of_latest_listing).limit(25)
+    json_load = {'load': []}
+    for assumption in load:
+        if assumption in current_user.assumptions:
+            json_load['load'].append([assumption.serialize, 'added'])
+        else:
+            json_load['load'].append([assumption.serialize, ''])
 
     return json_load

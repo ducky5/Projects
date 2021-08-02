@@ -71,6 +71,14 @@ class Assumption(db.Model):
     def __repr__(self):
         return f'<{self.content_type} {self.id}>'
 
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'content': self.content,
+            'content_type': self.content_type
+        }
+
 class Message(db.Model):
     __tablename__ = 'messages'
 
@@ -79,7 +87,6 @@ class Message(db.Model):
     recipient_id = db.Column(db.Integer(), nullable=False)
     message = db.Column(db.String(), nullable=False)
     is_auto_generated = db.Column(db.Boolean, default=False, nullable=False)
-    is_received = db.Column(db.Boolean, default=False, nullable=False)
 
     @property
     def serialize(self):
@@ -89,5 +96,4 @@ class Message(db.Model):
             'recipient_id': self.recipient_id,
             'message': self.message,
             'is_auto_generated': self.is_auto_generated,
-            'is_received': self.is_received
         }
