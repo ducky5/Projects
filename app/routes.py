@@ -276,9 +276,7 @@ def load_more_assumptions():
     Assumption.id>id_of_latest_listing).limit(25)
     json_load = {'load': []}
     for assumption in load:
-        if assumption in current_user.assumptions:
-            json_load['load'].append([assumption.serialize, 'added'])
-        else:
-            json_load['load'].append([assumption.serialize, ''])
+        if assumption not in current_user.assumptions:
+            json_load['load'].append(assumption.serialize)
 
     return json_load

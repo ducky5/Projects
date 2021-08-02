@@ -10,13 +10,13 @@ href="{{ url_for('static', filename='css/minified/assumptions.css') }}">
 {% block content %}
 <ul id="list_of_assumptions">
   {% for assumption in assumptions %}
-  <div class="list-item-wrapper  {% if assumption in current_user.assumptions %}
-  added{% endif %}" ASSUMPTION_ID="{{ assumption.id }}">
+  {% if assumption not in current_user.assumptions %}
+  <div class="list-item-wrapper" ASSUMPTION_ID="{{ assumption.id }}">
     <span class="action-buttons">
-      <button type="button" name="unadd_assumption" class="unadd" title="unadd"
+      <!-- <button type="button" name="unadd_assumption" class="unadd" title="unadd"
       ASSUMPTION_ID="{{ assumption.id }}">
         <i class="fas fa-minus-circle"></i>
-      </button>
+      </button> -->
       <button type="button" name="add_assumption" class="add" title="add"
       ASSUMPTION_ID="{{ assumption.id }}">
         <i class="fas fa-plus-circle"></i>
@@ -27,6 +27,7 @@ href="{{ url_for('static', filename='css/minified/assumptions.css') }}">
       {{ assumption.content }}
     </li>
   </div>
+  {% endif %}
   {% endfor %}
 </ul>
 <!-- load more button -->
@@ -39,5 +40,5 @@ Logged in as {{ current_user.username }}
 
 {% block javascript %}
 <script src="{{ url_for('static',
-filename='js/minified/assumptions.js') }}"></script>
+filename='js/assumptions.js') }}"></script>
 {% endblock %}
