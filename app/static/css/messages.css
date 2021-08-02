@@ -21,23 +21,55 @@ ul {
   border: 1px solid rgba(0, 0, 0, .09);
   border-bottom: 0;
 }
-.action-buttons > button {
+.action-buttons .start-conversation {
+  color: rgb(39, 219, 26);
+}
+.action-buttons button {
   border: 0;
   background: transparent;
   font-size: 30px;
 }
-.action-buttons > .add {
-  color: rgb(39, 219, 26);
-  order: 2;
+.action-buttons > .unadd {
+  color: rgb(232, 80, 53);
 }
-li.type-text {
+.action-buttons button {
+  cursor: pointer;
+}
+li {
   border: 1px solid rgba(0, 0, 0, .09);
-  list-style: none;
+  border-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   font-family: sans-serif;
-  color: rgb(0, 4, 56);
   background: rgb(247, 247, 247);
-  padding: 8px;
-  text-align: center;
+  padding: 3px;
+  font-size: 25px;
+}
+.meta-data {
+  order: 1;
+  padding: 5px;
+  color: rgb(97, 184, 255);
+  font-size: .44em;
+  align-self: center;
+  font-family: roboto-bold, sans-serif;
+  /* disables text selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.username {
+  font-family: roboto-regular, sans-serif;
+  align-self: center;
+  padding: 3px;
+  color: rgb(0, 4, 56);
+  font-size: .77em;
+}
+.gender, .compatibility, .age {
+  font-size: 1.8em;
 }
 button#load_more {
   padding: 8px;
@@ -48,6 +80,13 @@ button#load_more {
   display: block;
   margin: 0 auto 70px auto;
   cursor: pointer;
+}
+.message {
+  background: rgb(247, 247, 247);
+  padding: 8px;
+  color: rgba(30, 30, 30, .8);
+  font-family: roboto-regular;
+  border: 1px solid rgba(0, 0, 0, .09);
 }
 /* from laptops and small screens up */
 @media (min-width: 769px) {
@@ -67,25 +106,28 @@ button#load_more {
   .list-item-wrapper:hover > .action-buttons {
     opacity: 1;
   }
-  .action-buttons > button {
-    cursor: pointer;
-  }
 }
 /* 2cols:1row */
 @media (min-width: 769px) {
-  li.type-text {
-    font-size: 20px;
-  }
   ul {
     justify-content: space-around;
   }
   .list-item-wrapper {
     flex-basis: 40%;
   }
+  .meta-data {
+    font-size: .46em;
+  }
 }
 /* 3cols:1row */
 @media (min-width: 1201px) {
   .list-item-wrapper {
     flex-basis: 33%;
+  }
+  .meta-data {
+    font-size: .49em;
+  }
+  .username {
+    font-size: 1em;
   }
 }

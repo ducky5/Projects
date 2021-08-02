@@ -280,3 +280,11 @@ def load_more_assumptions():
             json_load['load'].append(assumption.serialize)
 
     return json_load
+
+@app.route('/messages')
+@login_required
+def messages_page():
+    messages = db.session.query(Message).order_by(db.desc(Message.id)).limit(25)
+    users = User.query.limit(25)
+    return render_template('messages.html', messages=messages, users=users,
+    calculate_compatibility=calculate_compatibility)

@@ -26,11 +26,8 @@ ul {
   background: transparent;
   font-size: 30px;
 }
-.action-buttons > .add, .action-buttons .start-conversation {
+.action-buttons > .add {
   color: rgb(39, 219, 26);
-}
-.action-buttons > .unadd {
-  color: rgb(232, 80, 53);
 }
 .action-buttons button {
   cursor: pointer;
@@ -71,50 +68,6 @@ li {
 .gender, .compatibility, .age {
   font-size: 1.8em;
 }
-.filter-by {
-  width: 70%;
-  margin: 30px auto 0 auto;
-  font-family: roboto-regular, sans-serif;
-  font-size: 20px;
-  color: rgb(0, 4, 56);
-  text-align: center;
-}
-.buttons {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 8px;
-}
-.buttons > button {
-  box-shadow: 0 4px 3px rgba(0, 0, 0, .09);
-  padding: 8px;
-  border: 0;
-  border-radius: 2px;
-  background: rgb(97, 184, 255);
-  color: rgb(247, 247, 247);
-  font-family: roboto-regular, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 42px;
-}
-.buttons > button > i {
-  padding-left: 3px;
-}
-.buttons > button > .fa-check-circle {
-  color: rgb(36, 36, 36);
-}
-button[name$="male"] {
-  font-size: 1.3em;
-}
-button[name$="male"], button[name="older-than-me"] {
-  grid-column: 1 / span 2;
-}
-.buttons > button > i.fa-check-circle {
-  font-size: 25px;
-}
-.hide {
-  display: none;
-}
 button#load_more {
   padding: 8px;
   color: rgb(0, 4, 56);
@@ -142,26 +95,6 @@ button#load_more {
   }
   .list-item-wrapper:hover > .action-buttons {
     opacity: 1;
-  }
-  .filter-by {
-    width: 90%;
-  }
-  .buttons {
-    grid-template-columns: auto auto auto auto auto;
-  }
-  .buttons > button, .buttons > button > i {
-    font-size: 25px;
-  }
-  button[name$="male"], button[name="older-than-me"] {
-    grid-column: auto;
-  }
-  .buttons > button {
-    box-shadow: none;
-    cursor: pointer;
-    transition: box-shadow 100ms ease;
-  }
-  .buttons > button:hover {
-    box-shadow: 0 4px 3px rgba(0, 0, 0, .09);
   }
 }
 /* 2cols:1row */
