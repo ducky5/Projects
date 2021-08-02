@@ -26,8 +26,13 @@ document.onreadystatechange = function() {
 
       // the variables
       let listings = document.querySelectorAll('.list-item-wrapper')
-      let id_of_latest_listing = listings[listings.length-1]
-      .getAttribute('ASSUMPTION_ID')
+      try {
+        var id_of_latest_listing = listings[listings.length-1]
+        .getAttribute('ASSUMPTION_ID')
+      }
+      catch (TypeError) {
+        var id_of_latest_listing = 25
+      }
 
       // the event
       document.getElementById('load_more').onclick = function() {
@@ -64,7 +69,7 @@ document.onreadystatechange = function() {
               .length-1].id
             }
             catch (TypeError) {
-              // do nothing
+              id_of_latest_listing++
             }
             add_buttons = document.querySelectorAll('button[class="add"]')
 
