@@ -67,7 +67,7 @@ document.onreadystatechange = function() {
         .getAttribute('USER_ID')
       }
       catch (TypeError) {
-        var id_of_latest_listing = 1
+        var id_of_latest_listing = 25
       }
 
       // the event
