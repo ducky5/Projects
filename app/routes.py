@@ -14,7 +14,7 @@ def home_page():
     return render_template('home.html', users=users,
     calculate_compatibility=calculate_compatibility)
 
-@app.route('/settings')
+@app.route('/assumptions')
 @login_required
 def assumptions_page():
     assumptions = Assumption.query.limit(25)

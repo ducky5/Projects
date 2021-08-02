@@ -25,6 +25,9 @@
 .fa-home:before {
   content: "\f015"; }
 
+.fa-female:before {
+  content: "\f182"; }
+
 .fa-male:before {
   content: "\f183"; }
 
