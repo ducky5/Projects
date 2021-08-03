@@ -78,8 +78,27 @@ button#load_more {
   margin: 0 auto 70px auto;
   cursor: pointer;
 }
+div.help-text {
+  margin: 0 auto 0 auto;
+  padding: 8px;
+  text-align: center;
+  font-family: roboto-light;
+  font-size: 25px;
+  color: rgb(247, 247, 247);
+  line-height: 1.3em;
+  background: linear-gradient(to bottom, rgb(0, 4, 56), rgba(0, 4, 56, .9));
+}
+div > i.fa-plus-circle {
+  color: rgb(39, 219, 26);
+}
+div > i.fa-comment-alt {
+  color: rgb(240, 240, 240)
+}
 /* from laptops and small screens up */
 @media (min-width: 769px) {
+  div.help-text {
+    font-size: 22px;
+  }
   ul {
     justify-content: space-between;
   }
