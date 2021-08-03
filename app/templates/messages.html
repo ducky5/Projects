@@ -46,9 +46,6 @@ href="{{ url_for('static', filename='css/messages.css') }}">
   {% endfor %}
   {% endfor %}
 </ul>
-<!-- load more button -->
-<button type="button" name="load more" id="load_more">Load more</button>
-
 {% endblock %}
 
 {% block footer %}
@@ -56,5 +53,6 @@ Logged in as {{ current_user.username }}
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('static', filename='js/messages.js') }}"></script>
+<script src="{{ url_for('static',
+filename='js/minified/messages.js') }}"></script>
 {% endblock %}

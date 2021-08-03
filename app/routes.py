@@ -289,7 +289,7 @@ def load_more_assumptions():
 @app.route('/messages')
 @login_required
 def messages_page():
-    messages = db.session.query(Message).order_by(db.desc(Message.id)).limit(25)
-    users = User.query.limit(25)
+    messages = db.session.query(Message).order_by(db.desc(Message.id)).all()
+    users = User.query.all()
     return render_template('messages.html', messages=messages, users=users,
     calculate_compatibility=calculate_compatibility)
