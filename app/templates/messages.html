@@ -9,6 +9,7 @@ href="{{ url_for('static', filename='css/minified/messages.css') }}">
 
 {% block content %}
 <!-- listers -->
+<h2 class="added_users"><i class="fas fa-plus-circle"></i>  Added users</h2>
 <ul id="list_of_users">
   <!-- for added users -->
   {% for user in current_user.added_users %}
@@ -39,6 +40,7 @@ href="{{ url_for('static', filename='css/minified/messages.css') }}">
   {% endfor %}
 
 </ul>
+<h2><i class="fas fa-comments"></i>  Messages</h2>
 <ul id="list_of_users">
   <!-- for users with messages -->
   {% for message in current_user.messages_to_be_received %}
