@@ -8,8 +8,39 @@ href="{{ url_for('static', filename='css/minified/messages.css') }}">
 {% block title %}Messages{% endblock %}
 
 {% block content %}
-<!-- lister -->
+<!-- listers -->
 <ul id="list_of_users">
+  <!-- for added users -->
+  {% for user in current_user.added_users %}
+  <div class="list-item-wrapper" USER_ID="{{ user.id }}">
+    <span class="action-buttons">
+      <button type="button" name="unadd_user" class="unadd" title="unadd"
+      USER_ID="{{ user.id }}">
+        <i class="fas fa-minus-circle"></i>
+      </button>
+      <a href="{{ url_for('chat_page', recipient_id=user.id) }}/"
+      title='chat'>
+        <button type="button" name="button" class="start-conversation">
+          <i class="fas fa-comments"></i>
+        </button>
+      </a>
+    </span>
+    <li class="for_listing_only">
+      <span class="username">{{ user.username }}</span>
+      <span class="meta-data">
+        <span class="gender {{ user.gender }}">
+        [<i class="fas fa-{{ user.gender }}" name="gender"></i>]</span>
+        <span class="compatibility">[{{ calculate_compatibility(user.id) }}%]
+        </span>
+        <span class="age">[{{ user.age }}]</span>
+      </span>
+    </li>
+  </div>
+  {% endfor %}
+
+</ul>
+<ul id="list_of_users">
+  <!-- for users with messages -->
   {% for message in current_user.messages_to_be_received %}
   {% for user in current_user.added_users %}
   {% if message.sender_id == user.id %}

@@ -35,9 +35,11 @@ ul {
 .action-buttons button {
   cursor: pointer;
 }
+li:not(.for_listing_only) {
+  border-bottom: 0;
+}
 li {
   border: 1px solid rgba(0, 0, 0, .09);
-  border-bottom: 0;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
