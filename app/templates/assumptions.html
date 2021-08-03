@@ -2,21 +2,23 @@
 
 {% block css_files %}
 <link rel="stylesheet"
-href="{{ url_for('static', filename='css/minified/assumptions.css') }}">
+href="{{ url_for('static', filename='css/assumptions.css') }}">
 {% endblock %}
 
 {% block title %}Assumptions{% endblock %}
 
 {% block content %}
+<div class="help-text">
+  Here you can <i class="fas fa-plus-circle"></i>Add things that apply to
+  your personality(Assumptions), once an assumption is added, it becomes part
+  of your account and cannot be unadded. The percentages in the
+  <i class="fas fa-home"></i>Home page are affected by the assumptions you add
+</div>
 <ul id="list_of_assumptions">
   {% for assumption in assumptions %}
   {% if assumption not in current_user.assumptions %}
   <div class="list-item-wrapper" ASSUMPTION_ID="{{ assumption.id }}">
     <span class="action-buttons">
-      <!-- <button type="button" name="unadd_assumption" class="unadd" title="unadd"
-      ASSUMPTION_ID="{{ assumption.id }}">
-        <i class="fas fa-minus-circle"></i>
-      </button> -->
       <button type="button" name="add_assumption" class="add" title="add"
       ASSUMPTION_ID="{{ assumption.id }}">
         <i class="fas fa-plus-circle"></i>
