@@ -1,5 +1,10 @@
 {% extends 'uniform/base.html' %}
 
+{% block meta %}
+<meta name="keywords" content="Home page, list of PMT users, add users,
+list of website users">
+{% endblock %}
+
 {% block css_files %}
 <!-- main file -->
 <link rel="stylesheet" href="{{ url_for('static',

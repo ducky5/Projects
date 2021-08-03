@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    {% block meta %}{% endblock %}
     <meta charset="utf-8">
     <!-- responsiveness meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- description meta -->
+    <meta name="description" content="PMT is an online tool for bringing
+    likeminded people together">
+    <!-- keywords meta -->
+    <meta name="keywords" content="Personality Matching Tool, PMT, likeminded">
     <!-- preloading -->
     <link rel="preload" href="{{ url_for('static',
     filename='fonts/brand_font/PressStart2P-Regular.ttf') }}" as="font"

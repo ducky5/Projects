@@ -1,5 +1,10 @@
 {% extends 'uniform/base.html' %}
 
+{% block meta %}
+<meta name="keywords" content="messages, latest messages,
+added users and messages">
+{% endblock %}
+
 {% block css_files %}
 <link rel="stylesheet"
 href="{{ url_for('static', filename='css/minified/messages.css') }}">

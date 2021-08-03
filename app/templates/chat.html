@@ -1,5 +1,9 @@
 {% extends 'uniform/base.html' %}
 
+{% block meta %}
+<meta name="keywords" content="chat, realtime chat page">
+{% endblock %}
+
 {% block css_files %}
 <link rel="stylesheet" href="{{ url_for('static',
 filename='css/minified/chat.css') }}">
