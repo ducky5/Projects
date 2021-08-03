@@ -10,11 +10,9 @@ href="{{ url_for('static', filename='css/minified/messages.css') }}">
 {% block content %}
 <!-- lister -->
 <ul id="list_of_users">
-  {% for message in messages %}
-  {% for user in users %}
-  {% if message.sender_id == user.id and
-  message.recipient_id == current_user.id
-  and user in current_user.added_users and not message.is_auto_generated %}
+  {% for message in current_user.messages_to_be_received %}
+  {% for user in current_user.added_users %}
+  {% if message.sender_id == user.id %}
   <div class="list-item-wrapper" USER_ID="{{ user.id }}">
     <span class="action-buttons">
       <button type="button" name="unadd_user" class="unadd" title="unadd"

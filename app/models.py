@@ -1,7 +1,7 @@
 from app import db, bcrypt
 from flask_login import UserMixin
 
-# association table(for many to many relationship)
+# association tables(for many to many relationship)
 users_to_assumptions = db.Table('users_to_assumptions',
                        db.Column('user_id', db.Integer,
                        db.ForeignKey('users.id')),
@@ -11,6 +11,8 @@ users_to_assumptions = db.Table('users_to_assumptions',
 users_to_users = db.Table('users_to_users', db.Column('added_id', db.Integer,
                  db.ForeignKey('users.id')),
                  db.Column('adder_id', db.Integer, db.ForeignKey('users.id')))
+
+
 
 # models
 class User(db.Model, UserMixin):
@@ -32,6 +34,10 @@ class User(db.Model, UserMixin):
                   primaryjoin=(users_to_users.c.added_id == id),
                   secondaryjoin=(users_to_users.c.adder_id == id),
                   backref=db.backref('adder_users', lazy=True), lazy=True)
+
+    # for one to many relationship between User and Message
+    messages_to_be_received = db.relationship('Message', backref='receiver',
+    lazy=True)
 
     def __repr__(self):
         return f'<{self.username} {self.id}>'
@@ -87,6 +93,9 @@ class Message(db.Model):
     recipient_id = db.Column(db.Integer(), nullable=False)
     message = db.Column(db.String(), nullable=False)
     is_auto_generated = db.Column(db.Boolean, default=False, nullable=False)
+
+    # for one to many relationship between User and Message
+    recipient = db.Column(db.Integer(), db.ForeignKey('users.id'))
 
     @property
     def serialize(self):

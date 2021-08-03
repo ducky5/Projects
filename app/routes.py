@@ -199,6 +199,8 @@ def save_message():
         message = Message(sender_id=current_user.id, recipient_id=recipient_id,
                           message=message)
         db.session.add(message)
+        # append message to recipient's list of messages
+        recipient.messages_to_be_received.append(message)
         db.session.commit()
 
         return 'success'
@@ -289,7 +291,5 @@ def load_more_assumptions():
 @app.route('/messages')
 @login_required
 def messages_page():
-    messages = db.session.query(Message).order_by(db.desc(Message.id)).all()
-    users = User.query.all()
-    return render_template('messages.html', messages=messages, users=users,
+    return render_template('messages.html',
     calculate_compatibility=calculate_compatibility)
