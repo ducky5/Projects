@@ -291,5 +291,6 @@ def load_more_assumptions():
 @app.route('/messages')
 @login_required
 def messages_page():
+    current_user.messages_to_be_received.reverse()
     return render_template('messages.html',
     calculate_compatibility=calculate_compatibility)
