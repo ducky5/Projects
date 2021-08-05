@@ -31,13 +31,6 @@ def password_to_standard(password):
     else:
         return False
 
-# a standard for username validation
-def username_to_standard(username):
-    if username.isalnum(): # username has to be alphanumeric
-        return True
-    else:
-        return False
-
 # function to calculate compatibility of two users(current_user and other)
 def calculate_compatibility(userid):
     commons = 0
