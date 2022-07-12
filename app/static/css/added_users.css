@@ -14,7 +14,7 @@ li.social_media > span {
   margin: 2px;
   font-size: .5em;
   color: #f0f0f0;
-  background: linear-gradient(to bottom,#000438,rgba(0,4,56,.9));
+  background: linear-gradient(to bottom,#000438,rgba(0, 4, 56, .9));
   border-radius: 10%;
 }
 .for_listing_only {

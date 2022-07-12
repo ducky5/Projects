@@ -1,8 +1,15 @@
 from flask_wtf import FlaskForm
-from wtforms import (StringField, IntegerField, PasswordField,
-SubmitField, SelectField)
-from wtforms.validators import (Length, EqualTo, Email, DataRequired,
-ValidationError, NumberRange)
+from wtforms import StringField
+from wtforms import IntegerField
+from wtforms import PasswordField
+from wtforms import SubmitField
+from wtforms import SelectField
+from wtforms.validators import Length
+from wtforms.validators import EqualTo
+from wtforms.validators import Email
+from wtforms.validators import DataRequired
+from wtforms.validators import ValidationError
+from wtforms.validators import NumberRange
 from app.models import User
 from app.helpers import password_to_standard
 

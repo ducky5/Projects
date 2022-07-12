@@ -42,10 +42,6 @@ class User(db.Model, UserMixin):
                   secondaryjoin=(users_to_users.c.adder_id == id),
                   backref=db.backref('adder_users', lazy=True), lazy=True)
 
-    # # for one to many relationship between User and Message
-    # messages_to_be_received = db.relationship('Message', backref='receiver',
-    # lazy=True)
-
     def __repr__(self):
         return f'<{self.username} {self.id}>'
 
@@ -96,25 +92,3 @@ class Assumption(db.Model):
             'content': self.content,
             'content_type': self.content_type
         }
-
-# class Message(db.Model):
-#     __tablename__ = 'messages'
-#
-#     id = db.Column(db.Integer(), primary_key=True)
-#     sender_id = db.Column(db.Integer(), nullable=False)
-#     recipient_id = db.Column(db.Integer(), nullable=False)
-#     message = db.Column(db.String(), nullable=False)
-#     is_auto_generated = db.Column(db.Boolean, default=False, nullable=False)
-#
-#     # for one to many relationship between User and Message
-#     recipient = db.Column(db.Integer(), db.ForeignKey('users.id'))
-#
-#     @property
-#     def serialize(self):
-#         return {
-#             'id': self.id,
-#             'sender_id': self.sender_id,
-#             'recipient_id': self.recipient_id,
-#             'message': self.message,
-#             'is_auto_generated': self.is_auto_generated,
-#         }

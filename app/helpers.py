@@ -1,5 +1,6 @@
 from flask_login import current_user
-from app.models import User, Assumption
+from app.models import User
+from app.models import Assumption
 
 # to check if user is logged out
 def logged_out():
