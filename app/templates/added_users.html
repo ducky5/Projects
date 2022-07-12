@@ -6,7 +6,7 @@
 
 {% block css_files %}
 <link rel="stylesheet"
-href="{{ url_for('static', filename='css/minified/added_users.css') }}">
+href="{{ url_for('static', filename='css/added_users.css') }}">
 {% endblock %}
 
 {% block title %}added users{% endblock %}
@@ -27,11 +27,17 @@ href="{{ url_for('static', filename='css/minified/added_users.css') }}">
       <span class="username">{{ user.username }}</span>
       <span class="meta-data">
         <span class="gender {{ user.gender }}">
-        [<i class="fas fa-{{ user.gender }}" name="gender"></i>]</span>
-        <span class="compatibility">[{{ calculate_compatibility(user.id) }}%]
+          [<i class="fas fa-{{ user.gender }}" name="gender"></i>]</span>
+          <span class="compatibility">[{{ calculate_compatibility(user.id) }}%]
+          </span>
         </span>
-        <span class="age">[{{ user.age }}]</span>
-      </span>
+    </li>
+    <li class='social_media'>
+      <span>facebook: {{ user.facebook }}</span>
+      <span>instagram: {{ user.instagram }}</span>
+      <span>twitter: {{ user.twitter }}</span>
+      <span>reddit: {{ user.reddit }}</span>
+      <span>discord: {{ user.discord }}</span>
     </li>
   </div>
   {% endfor %}

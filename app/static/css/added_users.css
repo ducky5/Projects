@@ -5,10 +5,26 @@ ul {
   display: flex;
   flex-wrap: wrap;
 }
+li.social_media {
+  display: flex;
+  justify-content: center;
+}
+li.social_media > span {
+  padding: 10px;
+  margin: 2px;
+  font-size: .5em;
+  color: #f0f0f0;
+  background: linear-gradient(to bottom,#000438,rgba(0,4,56,.9));
+  border-radius: 10%;
+}
+.for_listing_only {
+  border-bottom: none;
+}
 .list-item-wrapper {
   flex-basis: 100%;
   position: relative;
   margin-bottom: 75px;
+  border-bottom: none;
 }
 .action-buttons {
   display: flex;
@@ -149,4 +165,8 @@ h2 > i {
   .username {
     font-size: 1em;
   }
+}
+li.social_media {
+  border: 1px solid rgba(0, 0, 0, .09);
+  border-top: none;
 }
