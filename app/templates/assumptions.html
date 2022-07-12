@@ -12,12 +12,6 @@ href="{{ url_for('static', filename='css/minified/assumptions.css') }}">
 {% block title %}Assumptions{% endblock %}
 
 {% block content %}
-<div class="help-text">
-  Here you can <i class="fas fa-plus-circle"></i>Add things that apply to
-  your personality(Assumptions), once an assumption is added, it becomes part
-  of your account and cannot be unadded. The percentages in the
-  <i class="fas fa-home"></i>Home page are affected by the assumptions you add
-</div>
 <ul id="list_of_assumptions">
   {% for assumption in assumptions %}
   {% if assumption not in current_user.assumptions %}

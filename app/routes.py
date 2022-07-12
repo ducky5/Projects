@@ -287,9 +287,9 @@ def load_more_assumptions():
 
     return json_load
 
-# @app.route('/messages')
-# @login_required
-# def messages_page():
-#     current_user.messages_to_be_received.reverse()
-#     return render_template('messages.html',
-#     calculate_compatibility=calculate_compatibility)
+@app.route('/added_users')
+@login_required
+def addedusers_page():
+    # current_user.messages_to_be_received.reverse()
+    return render_template('added_users.html',
+    calculate_compatibility=calculate_compatibility)

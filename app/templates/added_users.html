@@ -1,31 +1,29 @@
 {% extends 'uniform/base.html' %}
 
 {% block meta %}
-<meta name="keywords" content="Home page, list of PMT users, add users,
-list of website users">
+<meta name="keywords" content="added users">
 {% endblock %}
 
 {% block css_files %}
-<!-- main file -->
-<link rel="stylesheet" href="{{ url_for('static',
-filename='css/minified/home.css') }}">
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/minified/added_users.css') }}">
 {% endblock %}
 
-{% block title %}Home{% endblock %}
+{% block title %}added users{% endblock %}
 
 {% block content %}
-<!-- lister -->
+<!-- listers -->
 <ul id="list_of_users">
-  {% for user in users %}
-  {% if user not in current_user.added_users and user.id != current_user.id %}
+  <!-- for added users -->
+  {% for user in current_user.added_users %}
   <div class="list-item-wrapper" USER_ID="{{ user.id }}">
     <span class="action-buttons">
-      <button type="button" name="add_user" class="add" title="add"
+      <button type="button" name="unadd_user" class="unadd" title="unadd"
       USER_ID="{{ user.id }}">
-        <i class="fas fa-plus-circle"></i>
+        <i class="fas fa-minus-circle"></i>
       </button>
     </span>
-    <li>
+    <li class="for_listing_only">
       <span class="username">{{ user.username }}</span>
       <span class="meta-data">
         <span class="gender {{ user.gender }}">
@@ -36,11 +34,9 @@ filename='css/minified/home.css') }}">
       </span>
     </li>
   </div>
-  {% endif %}
   {% endfor %}
+
 </ul>
-<!-- load more button -->
-<button type="button" name="load more" id="load_more">Keep clicking</button>
 {% endblock %}
 
 {% block footer %}
@@ -48,5 +44,6 @@ Logged in as {{ current_user.username }}
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('static', filename='js/minified/home.js') }}"></script>
+<script src="{{ url_for('static',
+filename='js/minified/added_users.js') }}"></script>
 {% endblock %}
