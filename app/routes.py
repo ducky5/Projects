@@ -80,8 +80,8 @@ def add_user():
             # add user to current_user
             current_user.added_users.append(user_to_add)
             db.session.add(current_user)
-            # add current_user to user
-            user_to_add.added_users.append(current_user)
+            # # add current_user to user
+            # user_to_add.added_users.append(current_user)
             # save
             db.session.commit()
 
