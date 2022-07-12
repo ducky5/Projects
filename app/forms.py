@@ -21,6 +21,13 @@ class RegisterForm(FlaskForm):
     [EqualTo('password1'), DataRequired()])
     submit = SubmitField(label='Create Account')
 
+    # social media
+    facebook = StringField(label='Facebook')
+    instagram = StringField(label='Instagram')
+    twitter = StringField(label='Twitter')
+    reddit = StringField(label='Reddit')
+    discord = StringField(label='Discord')
+
     def validate_username(self, check_username_input):
         user = User.query.filter_by(username=check_username_input.data).first()
         if user:

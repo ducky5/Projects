@@ -30,7 +30,12 @@ def register_page():
                               email=form.email.data,
                               password=form.password1.data,
                               age=form.age.data,
-                              gender=form.gender.data)
+                              gender=form.gender.data,
+                              facebook=form.facebook.data,
+                              instagram=form.instagram.data,
+                              twitter=form.twitter.data,
+                              reddit=form.reddit.data,
+                              discord=form.discord.data)
         db.session.add(user_to_create)
         db.session.commit()
 

@@ -25,6 +25,13 @@ class User(db.Model, UserMixin):
     age = db.Column(db.Integer(), nullable=False)
     gender = db.Column(db.String(length=6), nullable=False)
 
+    # social media
+    facebook = db.Column(db.String(length=50), nullable=True, unique=False)
+    instagram = db.Column(db.String(length=50), nullable=True, unique=False)
+    twitter = db.Column(db.String(length=50), nullable=True, unique=False)
+    reddit = db.Column(db.String(length=50), nullable=True, unique=False)
+    discord = db.Column(db.String(length=50), nullable=True, unique=False)
+
     # for many to many relationship between User and Assumption
     assumptions = db.relationship('Assumption', secondary=users_to_assumptions,
     backref=db.backref('users', lazy=True), lazy=True)
@@ -52,7 +59,9 @@ class User(db.Model, UserMixin):
             'age': self.age,
             'gender': self.gender,
             'assumptions': self.assumptions,
-            'added_users': self.added_users
+            'added_users': self.added_users,
+            'social_media': [self.facebook, self.instagram, self.twitter,
+                             self.reddit, self.discord]
         }
 
     @property
