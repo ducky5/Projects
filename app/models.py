@@ -60,8 +60,11 @@ class User(db.Model, UserMixin):
             'gender': self.gender,
             'assumptions': self.assumptions,
             'added_users': self.added_users,
-            'social_media': [self.facebook, self.instagram, self.twitter,
-                             self.reddit, self.discord]
+            'social_media': {'facebook': self.facebook,
+                             'instagram': self.instagram,
+                             'twitter': self.twitter,
+                             'reddit': self.reddit,
+                             'discord': self.discord}
         }
 
     @property
