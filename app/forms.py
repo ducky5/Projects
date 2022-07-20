@@ -18,7 +18,7 @@ class RegisterForm(FlaskForm):
     DataRequired()], render_kw={'autofocus':True})
     email = StringField(label='Email Address:', validators=[Email(),
     DataRequired()])
-    age = IntegerField(label='Age:', validators=[NumberRange(min=18),
+    age = IntegerField(label='Age:', validators=[NumberRange(min=18, max=100),
     DataRequired()])
     gender = SelectField(label='Gender:', choices=['male', 'female'],
     validators=[DataRequired()])
