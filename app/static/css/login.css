@@ -41,7 +41,12 @@ form > span > a[href^="/register"] {
 }
 /* from laptops and small screens up */
 @media (min-width: 769px) {
+  body {
+    background-image: url('../../media/gif.webp');
+    background-size: cover;
+  }
   form {
+    float: right;
     width: 35%;
     margin: 30px 15px;
   }

@@ -72,10 +72,12 @@
       {% block content %}{% endblock %}
     </main>
     <!-- footer -->
+    {% if request.path != '/register' and request.path != '/login' %}
     <footer>
       <!-- child template's footer -->
       {% block footer %}{% endblock %}
     </footer>
+    {% endif %}
     <!-- javascript -->
     {% block javascript %}{% endblock %}
   </body>

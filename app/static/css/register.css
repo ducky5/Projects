@@ -49,6 +49,10 @@ form > span > a[href="/login"] {
 }
 /* from laptops and small screens up */
 @media (min-width: 769px) {
+  body {
+    background-image: url('../../media/gif.webp');
+    background-size: cover;
+  }
   form {
     width: 35%;
     margin: 30px 15px;
